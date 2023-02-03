@@ -4,8 +4,10 @@ import {
   HandlerContext,
   HandlerEvent,
 } from "@netlify/functions";
-import { Response } from "@netlify/functions/dist/function/response";
 import nodemailer from "nodemailer";
+import { render } from "@react-email/render"
+import { WelcomeEmail } from "emails/welcomeTemplate";
+
 
 const handler: Handler = async (
   event: HandlerEvent,
@@ -25,11 +27,9 @@ const handler: Handler = async (
     from: process.env.SMTP_SERVER_EMAIL_ADDRESS,
     to: data.email,
     subject: `Sending with React, Nodemailer and Netlify`,
-    html: `
-        <h3>Email from BUREK<h3>`,
+    html: data.html,
   });
 
-  console.log("burek", result);
 
   return {
     statusCode: 200,

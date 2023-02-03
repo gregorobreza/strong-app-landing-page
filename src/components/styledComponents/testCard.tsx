@@ -1,8 +1,10 @@
 import { Button, Card, Group, Text, TextInput } from "@mantine/core";
 import { IconAt } from "@tabler/icons-react";
 import axios from "axios";
+import { WelcomeEmail } from "emails/welcomeTemplate";
 import { Field, FieldProps, Form, Formik, FormikProps } from "formik";
 import { object, string } from "yup";
+import { render } from "@react-email/render"
 
 export function TestCard() {
   const validatorSchema = object().shape({
@@ -14,14 +16,15 @@ export function TestCard() {
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <Formik
-        initialValues={{ email: "" }}
+        initialValues={{ email: "", html: render(WelcomeEmail()) }}
         validationSchema={validatorSchema}
         onSubmit={async (values, actions) => {
           console.log(values);
           axios
             .post("/api/0/sendSubmitionMail", values, { timeout: 20000 })
-            .then((data) => console.log(data)).catch((error) => {
-              console.error(error)
+            .then((data) => console.log(data))
+            .catch((error) => {
+              console.error(error);
             });
         }}
       >

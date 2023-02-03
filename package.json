@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "emaildev": "email dev",
     "netlifydev": "yarn netlify dev",
     "build": "next build",
     "start": "next start",
@@ -19,6 +20,10 @@
     "@mantine/next": "^5.10.3",
     "@netlify/functions": "^1.4.0",
     "@next/font": "13.1.6",
+    "@react-email/container": "0.0.7-canary.1",
+    "@react-email/html": "0.0.4",
+    "@react-email/section": "0.0.7-canary.1",
+    "@react-email/text": "0.0.4",
     "@tabler/icons-react": "^2.2.0",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
@@ -33,6 +38,7 @@
     "nodemailer": "^6.9.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-email": "1.7.10",
     "typescript": "4.9.5",
     "yup": "^0.32.11"
   },
