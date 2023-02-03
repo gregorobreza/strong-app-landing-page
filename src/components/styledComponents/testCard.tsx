@@ -19,7 +19,7 @@ export function TestCard() {
         onSubmit={async (values, actions) => {
           console.log(values);
           axios
-            .post("/api/0/sendSubmitionMail", null, { timeout: 20000 })
+            .post("/api/0/sendSubmitionMail", values, { timeout: 20000 })
             .then((data) => console.log(data)).catch((error) => {
               console.error(error)
             });
