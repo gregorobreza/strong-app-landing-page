@@ -6,7 +6,6 @@ import {
 } from "@netlify/functions";
 import nodemailer from "nodemailer";
 import { render } from "@react-email/render"
-import { WelcomeEmail } from "emails/welcomeTemplate";
 
 
 const handler: Handler = async (

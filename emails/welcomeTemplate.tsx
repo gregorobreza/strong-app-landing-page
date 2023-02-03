@@ -3,7 +3,7 @@ import { Text } from "@react-email/text"
 import { Section } from "@react-email/section"
 import { Container } from "@react-email/container"
 
-export function WelcomeEmail() {
+export default function WelcomeEmail() {
   return (
     <Html>
       <Section style={main}>
@@ -19,6 +19,7 @@ export function WelcomeEmail() {
 // Styles for the email template
 const main = {
   backgroundColor: "#ffffff",
+  width: "100vw"
 }
 
 const container = {
