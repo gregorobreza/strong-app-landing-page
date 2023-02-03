@@ -1,6 +1,4 @@
-import {
-  Button, Card, Group, Text, TextInput
-} from "@mantine/core";
+import { Button, Card, Group, Text, TextInput } from "@mantine/core";
 import { IconAt } from "@tabler/icons-react";
 import axios from "axios";
 import { Field, FieldProps, Form, Formik, FormikProps } from "formik";
@@ -20,7 +18,11 @@ export function TestCard() {
         validationSchema={validatorSchema}
         onSubmit={async (values, actions) => {
           console.log(values);
-          axios.post("/api/0/sendSubmitionMail", values)
+          axios
+            .post("/api/0/sendSubmitionMail", null, { timeout: 20000 })
+            .then((data) => console.log(data)).catch((error) => {
+              console.error(error)
+            });
         }}
       >
         {(formikProps: FormikProps<any>) => (

@@ -1,14 +1,16 @@
-import { Handler, HandlerContext, HandlerEvent } from "@netlify/functions";
+import {
+  Handler,
+  HandlerCallback,
+  HandlerContext,
+  HandlerEvent,
+} from "@netlify/functions";
+import { Response } from "@netlify/functions/dist/function/response";
 import nodemailer from "nodemailer";
 
 const handler: Handler = async (
   event: HandlerEvent,
   context: HandlerContext
 ) => {
-  //   let data = JSON.parse(event.body || "");
-
-  //   console.log(data)
-
   let transporter = nodemailer.createTransport({
     host: process.env.SMTP_SERVER || "",
     port: parseInt(process.env.SMTP_SERVER_PORT || "0"),
@@ -17,7 +19,7 @@ const handler: Handler = async (
       pass: process.env.SMTP_SERVER_PASSWORD || "",
     },
   });
-  const neki = await transporter.sendMail({
+  const result = await transporter.sendMail({
     from: process.env.SMTP_SERVER_EMAIL_ADDRESS,
     to: "gobreza@gmail.com",
     subject: `Sending with React, Nodemailer and Netlify`,
@@ -25,11 +27,11 @@ const handler: Handler = async (
         <h3>Email from BUREK<h3>`,
   });
 
-  console.log(neki);
-
+  console.log("burek", result);
+  
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: "Message send to " }),
+    body: JSON.stringify({ message: "Email Send" }),
   };
 };
 
