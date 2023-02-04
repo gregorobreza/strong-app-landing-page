@@ -4,8 +4,11 @@ import axios from "axios";
 
 import { Field, FieldProps, Form, Formik, FormikProps } from "formik";
 import { object, string } from "yup";
-import { render } from "@react-email/render"
+
 import WelcomeEmail from "emails/welcomeTemplate";
+import { render } from "@react-email/render";
+import SignUpEmail from "emails/signUpTemplate";
+import { useRouter } from "next/router";
 
 export function TestCard() {
   const validatorSchema = object().shape({
@@ -14,10 +17,14 @@ export function TestCard() {
       .email("Please provide valid email"),
   });
 
+  const router = useRouter()
+  
+  const baseUrl = window ? window.location.origin : ""
+
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <Formik
-        initialValues={{ email: "", html: render(WelcomeEmail()) }}
+        initialValues={{ email: "", html: render(<SignUpEmail email={"gobreza@gmail.com"} linkUrl={""} imageUrl={`${baseUrl}/strongman.png`}/>) }}
         validationSchema={validatorSchema}
         onSubmit={async (values, actions) => {
           console.log(values);
