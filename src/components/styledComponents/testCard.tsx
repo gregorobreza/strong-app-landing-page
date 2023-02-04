@@ -1,22 +1,31 @@
-import { Button, Card, Group, Text, TextInput } from "@mantine/core";
-import { IconAt } from "@tabler/icons-react";
+import {
+  Box,
+  Button,
+  Card,
+  Collapse,
+  Flex,
+  Group,
+  Space,
+  Text,
+  TextInput,
+} from "@mantine/core";
+import { IconAt, IconCheck } from "@tabler/icons-react";
 import axios from "axios";
 
 import { Field, FieldProps, Form, Formik, FormikProps } from "formik";
 import { object, string } from "yup";
 
-import WelcomeEmail from "emails/welcomeTemplate";
 import { render } from "@react-email/render";
 import SignUpEmail from "emails/signUpTemplate";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
 export function TestCard() {
+  const [info, setInfo] = useState(false);
   const validatorSchema = object().shape({
     email: string()
       .required("Email is required")
       .email("Please provide valid email"),
   });
-
 
   const origin =
     typeof window !== "undefined" && window.location.origin
@@ -28,21 +37,36 @@ export function TestCard() {
       <Formik
         initialValues={{
           email: "",
-          html: render(
-            <SignUpEmail
-              email={"gobreza@gmail.com"}
-              linkUrl={"https://www.youtube.com/watch?v=s3PV9hat814"}
-              imageUrl={`${origin}/strongman.png`}
-              secondImg={`${origin}/neki.png`}
-            />
-          ),
+          // html: render(
+          //   <SignUpEmail
+          //     email={"gobreza@gmail.com"}
+          //     linkUrl={"https://www.youtube.com/watch?v=s3PV9hat814"}
+          //     imageUrl={`${origin}/strongman.png`}
+          //     secondImg={`${origin}/neki.png`}
+          //   />
+          // ),
         }}
         validationSchema={validatorSchema}
         onSubmit={async (values, actions) => {
           console.log(values);
+          const html = render(
+            <SignUpEmail
+              email={values.email}
+              linkUrl={"https://www.youtube.com/watch?v=s3PV9hat814"}
+              imageUrl={`${origin}/strongman.png`}
+              secondImg={`${origin}/neki.png`}
+            />
+          );
           axios
-            .post("/api/0/sendSubmitionMail", values, { timeout: 20000 })
-            .then((data) => console.log(data))
+            .post(
+              "/api/0/sendSubmitionMail",
+              { email: values.email, html: html },
+              { timeout: 20000 }
+            )
+            .then((data) => {
+              console.log(data);
+              setInfo(true);
+            })
             .catch((error) => {
               console.error(error);
             });
@@ -82,6 +106,21 @@ export function TestCard() {
             >
               Submit
             </Button>
+            <Space h="md" />
+            <Collapse in={info}>
+              <Box
+                sx={(theme) => ({
+                  border: `2px solid ${theme.colors.red[6]}`,
+                  borderRadius: "15px",
+                  padding: "10px",
+                  maxWidth: "250px"
+                })}
+              >
+                <Flex justify="apart">
+                  <Text>Your email has been submited check your inbox.</Text>
+                </Flex>
+              </Box>
+            </Collapse>
           </Form>
         )}
       </Formik>

@@ -98,7 +98,7 @@ const button = {
   backgroundColor: "#E03131",
   borderRadius: "20px",
   fontWeight: 700,
-  color: "#fff",
+  color: "#ffffff",
   fontSize: "16px",
   textDecoration: "none",
   textAlign: "center" as const,
