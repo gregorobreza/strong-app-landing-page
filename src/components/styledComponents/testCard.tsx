@@ -31,7 +31,7 @@ export function TestCard() {
           html: render(
             <SignUpEmail
               email={"gobreza@gmail.com"}
-              linkUrl={""}
+              linkUrl={"https://www.youtube.com/watch?v=s3PV9hat814"}
               imageUrl={`${origin}/strongman.png`}
             />
           ),
