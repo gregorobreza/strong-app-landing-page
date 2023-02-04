@@ -17,14 +17,25 @@ export function TestCard() {
       .email("Please provide valid email"),
   });
 
-  const router = useRouter()
-  
-  const baseUrl = window ? window.location.origin : ""
+
+  const origin =
+    typeof window !== "undefined" && window.location.origin
+      ? window.location.origin
+      : "";
 
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <Formik
-        initialValues={{ email: "", html: render(<SignUpEmail email={"gobreza@gmail.com"} linkUrl={""} imageUrl={`${baseUrl}/strongman.png`}/>) }}
+        initialValues={{
+          email: "",
+          html: render(
+            <SignUpEmail
+              email={"gobreza@gmail.com"}
+              linkUrl={""}
+              imageUrl={`${origin}/strongman.png`}
+            />
+          ),
+        }}
         validationSchema={validatorSchema}
         onSubmit={async (values, actions) => {
           console.log(values);
