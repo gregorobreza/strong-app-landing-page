@@ -13,36 +13,38 @@ interface SignUpProps {
   email: string;
   linkUrl: string;
   imageUrl: string;
+  secondImg: string;
 }
 
-export default function SignUpEmail({ email, linkUrl, imageUrl }: SignUpProps) {
+export default function SignUpEmail({ email, linkUrl, imageUrl, secondImg }: SignUpProps) {
   return (
     <Html>
       <Head />
       <Preview>
-        The sales intelligence platform that helps you uncover qualified leads.
+        Why are you gay?
       </Preview>
       <Section style={main}>
         <Container style={container}>
           <Img
             src={imageUrl}
-            width="170"
-            height="170"
+            width="140"
+            height="140"
             alt="StrongApp"
             style={logo}
           />
           <Text style={paragraph}>Hi {email},</Text>
           <Text style={paragraph}>Why are you gay?</Text>
-
-          <div
-            style={flag}
-            role="img"
-            aria-label="Gilbert Baker Pride Flag. Eight vertical bars of equal size: hot pink, red, orange, yellow, green, turquoise, blue, and indigo."
-          ></div>
+          <Img
+            src={secondImg}
+            width="320"
+            height="198"
+            alt="gay"
+            style={logo}
+          />
 
           <Section style={btnContainer}>
             <Button pX={12} pY={12} style={button} href={linkUrl}>
-              Who says I am gay?
+              Check who says I am gay?
             </Button>
           </Section>
           <Text style={paragraph}>
@@ -67,8 +69,16 @@ const main = {
 
 const container = {
   margin: "0 auto",
-  padding: "20px 0 48px",
+//   padding: "20px 0 48px",
+  padding: '45px',
 };
+
+const gaycontainer = {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "40px",
+    marginBottom: "40px",
+}
 
 const logo = {
   margin: "0 auto",
@@ -79,6 +89,7 @@ const paragraph = {
   fontSize: "16px",
   lineHeight: "26px",
   color: "#ffffff",
+  textAlign: "center" as const
 };
 
 const btnContainer = {

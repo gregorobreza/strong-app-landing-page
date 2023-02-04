@@ -33,6 +33,7 @@ export function TestCard() {
               email={"gobreza@gmail.com"}
               linkUrl={"https://www.youtube.com/watch?v=s3PV9hat814"}
               imageUrl={`${origin}/strongman.png`}
+              secondImg={`${origin}/neki.png`}
             />
           ),
         }}
