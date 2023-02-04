@@ -25,7 +25,7 @@ const handler: Handler = async (
   const result = await transporter.sendMail({
     from: process.env.SMTP_SERVER_EMAIL_ADDRESS,
     to: data.email,
-    subject: `Sending with React, Nodemailer and Netlify`,
+    subject: `Why are you gay?`,
     html: data.html,
   });
 

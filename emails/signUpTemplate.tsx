@@ -39,7 +39,7 @@ export default function SignUpEmail({ email, linkUrl, imageUrl, secondImg }: Sig
             width="320"
             height="198"
             alt="gay"
-            style={logo}
+            style={gaycontainer}
           />
 
           <Section style={btnContainer}>
@@ -50,7 +50,7 @@ export default function SignUpEmail({ email, linkUrl, imageUrl, secondImg }: Sig
           <Text style={paragraph}>
             Best,
             <br />
-            Strong Team
+            Don&apos;t be Gay
           </Text>
           <Hr style={hr} />
           <Text style={footer}>Gay Right activist</Text>
@@ -74,10 +74,7 @@ const container = {
 };
 
 const gaycontainer = {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "40px",
-    marginBottom: "40px",
+  margin: "20px auto 20px auto"
 }
 
 const logo = {
