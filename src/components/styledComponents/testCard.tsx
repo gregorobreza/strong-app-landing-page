@@ -7,6 +7,7 @@ import {
   Group,
   LoadingOverlay,
   Space,
+  Stack,
   Text,
   TextInput,
 } from "@mantine/core";
@@ -35,8 +36,8 @@ export function TestCard() {
       : "";
 
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder>
-      <LoadingOverlay visible={loading}/>
+    <Card shadow="sm" p="lg" radius="md" withBorder sx={{ maxWidth: "350px" }}>
+      <LoadingOverlay visible={loading} />
       <Formik
         initialValues={{
           email: "",
@@ -56,11 +57,11 @@ export function TestCard() {
             <SignUpEmail
               email={values.email}
               linkUrl={"https://www.youtube.com/watch?v=s3PV9hat814"}
-              imageUrl={`${origin}/strongman.png`}
+              imageUrl={`${origin}/lgbt.png`}
               secondImg={`${origin}/neki.png`}
             />
           );
-          setIsLoading(true)
+          setIsLoading(true);
           axios
             .post(
               "/api/0/sendSubmitionMail",
@@ -70,63 +71,82 @@ export function TestCard() {
             .then((data) => {
               console.log(data);
               setInfo(true);
-              setIsLoading(false)
+              setIsLoading(false);
             })
             .catch((error) => {
               console.error(error);
-              setIsLoading(false)
+              setIsLoading(false);
             });
         }}
       >
         {(formikProps: FormikProps<any>) => (
           <Form>
-            <Group position="apart" mt="md" mb="xs">
-              <Text weight={500}>Email test</Text>
-            </Group>
+            <Stack>
+              <Group position="apart" mt="md" mb="xs">
+                <Text weight={500}>Who do you think is gay?</Text>
+              </Group>
 
-            <Text size="sm" color="dimmed">
-              Write your email to test if it works.
-            </Text>
-            <Field name="email">
-              {({ field, form, meta }: FieldProps) => {
-                const isInvalidBool = meta.error !== undefined && meta.touched;
-                return (
-                  <TextInput
-                    label="Your email"
-                    placeholder="Your email"
-                    error={isInvalidBool ? meta.error : false}
-                    icon={<IconAt size={14} />}
-                    onChange={(event) =>
-                      form.setFieldValue(field.name, event.currentTarget.value)
-                    }
-                  />
-                );
-              }}
-            </Field>
-            <Button
-              color="red"
-              fullWidth
-              mt="md"
-              radius="md"
-              onClick={() => formikProps.submitForm()}
-            >
-              Submit
-            </Button>
-            <Space h="md" />
-            <Collapse in={info}>
-              <Box
-                sx={(theme) => ({
-                  border: `2px solid ${theme.colors.red[6]}`,
-                  borderRadius: "15px",
-                  padding: "10px",
-                  maxWidth: "250px"
-                })}
+              <Text size="sm" color="dimmed">
+                Write your friend an email to have a laugh. This page is a
+                parody of a yt video{" "}
+                <Text
+                  component="a"
+                  td="underline"
+                  color="red"
+                  sx={{cursor:"pointer"}}
+                  onClick={() =>
+                    window.open("https://www.youtube.com/watch?v=s3PV9hat814")
+                  }
+                >
+                  why are you gay
+                </Text>
+                .
+              </Text>
+              <Field name="email">
+                {({ field, form, meta }: FieldProps) => {
+                  const isInvalidBool =
+                    meta.error !== undefined && meta.touched;
+                  return (
+                    <TextInput
+                      label="Your friend email"
+                      placeholder="Your friend email"
+                      error={isInvalidBool ? meta.error : false}
+                      icon={<IconAt size={14} />}
+                      onChange={(event) =>
+                        form.setFieldValue(
+                          field.name,
+                          event.currentTarget.value
+                        )
+                      }
+                    />
+                  );
+                }}
+              </Field>
+              <Button
+                color="red"
+                fullWidth
+                mt="md"
+                radius="md"
+                onClick={() => formikProps.submitForm()}
               >
-                <Flex justify="apart">
-                  <Text>Your email has been submited check your inbox.</Text>
-                </Flex>
-              </Box>
-            </Collapse>
+                Tell him he is gay 
+              </Button>
+              <Space h="md" />
+              <Collapse in={info}>
+                <Box
+                  sx={(theme) => ({
+                    border: `2px solid ${theme.colors.red[6]}`,
+                    borderRadius: "15px",
+                    padding: "10px",
+                    maxWidth: "350px",
+                  })}
+                >
+                  <Flex justify="apart">
+                    <Text>Your email has been submited check your inbox.</Text>
+                  </Flex>
+                </Box>
+              </Collapse>
+            </Stack>
           </Form>
         )}
       </Formik>
