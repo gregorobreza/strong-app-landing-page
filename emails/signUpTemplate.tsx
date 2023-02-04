@@ -16,13 +16,16 @@ interface SignUpProps {
   secondImg: string;
 }
 
-export default function SignUpEmail({ email, linkUrl, imageUrl, secondImg }: SignUpProps) {
+export default function SignUpEmail({
+  email,
+  linkUrl,
+  imageUrl,
+  secondImg,
+}: SignUpProps) {
   return (
     <Html>
       <Head />
-      <Preview>
-        Why are you gay?
-      </Preview>
+      <Preview>Someone said you are gay.</Preview>
       <Section style={main}>
         <Container style={container}>
           <Img
@@ -50,7 +53,7 @@ export default function SignUpEmail({ email, linkUrl, imageUrl, secondImg }: Sig
           <Text style={paragraph}>
             Best,
             <br />
-            Don&apos;t be Gay
+            It is OK to be gay
           </Text>
           <Hr style={hr} />
           <Text style={footer}>Gay Right activist</Text>
@@ -69,13 +72,13 @@ const main = {
 
 const container = {
   margin: "0 auto",
-//   padding: "20px 0 48px",
-  padding: '45px',
+  //   padding: "20px 0 48px",
+  padding: "45px",
 };
 
 const gaycontainer = {
-  margin: "20px auto 20px auto"
-}
+  margin: "20px auto 20px auto",
+};
 
 const logo = {
   margin: "0 auto",
@@ -86,7 +89,7 @@ const paragraph = {
   fontSize: "16px",
   lineHeight: "26px",
   color: "#ffffff",
-  textAlign: "center" as const
+  textAlign: "center" as const,
 };
 
 const btnContainer = {

@@ -131,7 +131,6 @@ export function TestCard() {
               >
                 Tell him he is gay 
               </Button>
-              <Space h="md" />
               <Collapse in={info}>
                 <Box
                   sx={(theme) => ({
