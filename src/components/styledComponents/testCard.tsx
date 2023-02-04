@@ -5,6 +5,7 @@ import {
   Collapse,
   Flex,
   Group,
+  LoadingOverlay,
   Space,
   Text,
   TextInput,
@@ -21,6 +22,7 @@ import { useState } from "react";
 
 export function TestCard() {
   const [info, setInfo] = useState(false);
+  const [loading, setIsLoading] = useState(false);
   const validatorSchema = object().shape({
     email: string()
       .required("Email is required")
@@ -34,6 +36,7 @@ export function TestCard() {
 
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
+      <LoadingOverlay visible={loading}/>
       <Formik
         initialValues={{
           email: "",
@@ -57,6 +60,7 @@ export function TestCard() {
               secondImg={`${origin}/neki.png`}
             />
           );
+          setIsLoading(true)
           axios
             .post(
               "/api/0/sendSubmitionMail",
@@ -66,9 +70,11 @@ export function TestCard() {
             .then((data) => {
               console.log(data);
               setInfo(true);
+              setIsLoading(false)
             })
             .catch((error) => {
               console.error(error);
+              setIsLoading(false)
             });
         }}
       >
