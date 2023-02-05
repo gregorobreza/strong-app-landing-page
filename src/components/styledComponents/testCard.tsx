@@ -41,18 +41,9 @@ export function TestCard() {
       <Formik
         initialValues={{
           email: "",
-          // html: render(
-          //   <SignUpEmail
-          //     email={"gobreza@gmail.com"}
-          //     linkUrl={"https://www.youtube.com/watch?v=s3PV9hat814"}
-          //     imageUrl={`${origin}/strongman.png`}
-          //     secondImg={`${origin}/neki.png`}
-          //   />
-          // ),
         }}
         validationSchema={validatorSchema}
         onSubmit={async (values, actions) => {
-          console.log(values);
           const html = render(
             <SignUpEmail
               email={values.email}
@@ -66,7 +57,7 @@ export function TestCard() {
             .post(
               "/api/0/sendSubmitionMail",
               { email: values.email, html: html },
-              { timeout: 20000 }
+             
             )
             .then((data) => {
               console.log(data);
@@ -87,7 +78,7 @@ export function TestCard() {
               </Group>
 
               <Text size="sm" color="dimmed">
-                Write your friend an email to have a laugh. This page is a
+                Send your friend an email to let him know he is gay and have a laugh. This page is a
                 parody of a yt video{" "}
                 <Text
                   component="a"
@@ -141,7 +132,7 @@ export function TestCard() {
                   })}
                 >
                   <Flex justify="apart">
-                    <Text>Your email has been submited check your inbox.</Text>
+                    <Text>Your told your friend he is gay.</Text>
                   </Flex>
                 </Box>
               </Collapse>

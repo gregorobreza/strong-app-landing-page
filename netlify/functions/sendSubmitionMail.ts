@@ -1,11 +1,8 @@
 import {
-  Handler,
-  HandlerCallback,
-  HandlerContext,
-  HandlerEvent,
+  Handler, HandlerContext,
+  HandlerEvent
 } from "@netlify/functions";
 import nodemailer from "nodemailer";
-import { render } from "@react-email/render"
 
 
 const handler: Handler = async (
