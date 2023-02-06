@@ -4,7 +4,7 @@ export const defaultThemeOverride: MantineThemeOverride = {
   /** Put your mantine theme override here */
   colors: {
     //5th
-    "carrot": [
+    carrot: [
       "#F6F3EF",
       "#E8DDD1",
       "#DFCAB1",
@@ -17,7 +17,7 @@ export const defaultThemeOverride: MantineThemeOverride = {
       "#846441",
     ],
     //6th
-    "steel": [
+    steelteal: [
       "#BCC1C1",
       "#A9B1B1",
       "#97A4A4",
@@ -30,7 +30,7 @@ export const defaultThemeOverride: MantineThemeOverride = {
       "#485555",
     ],
     //0th
-    "grayf": [
+    grayf: [
       "#FFFFFF",
       "#E6E6E6",
       "#CFCFCF",
@@ -43,7 +43,8 @@ export const defaultThemeOverride: MantineThemeOverride = {
       "#888888",
     ],
     //6th
-    "eerie": [
+    dark: [
+      "#ffffff",
       "#252627",
       "#222223",
       "#1F1F20",
@@ -53,10 +54,9 @@ export const defaultThemeOverride: MantineThemeOverride = {
       "#141517",
       "#121314",
       "#111112",
-      "#0F0F10",
     ],
     //6th
-    "geranium": [
+    geranium: [
       "#F4EFEF",
       "#E4D3D3",
       "#D9B7B7",
@@ -71,4 +71,6 @@ export const defaultThemeOverride: MantineThemeOverride = {
   },
   colorScheme: "dark",
   primaryColor: "red",
+  fontFamily: "Open Sans, sans-serif",
+  // headings: { fontFamily: "Roboto, sans-serif" },
 };

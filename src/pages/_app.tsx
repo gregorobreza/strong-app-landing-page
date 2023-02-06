@@ -9,12 +9,13 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <title>Why are you gay</title>
+        <title>Strong app | Revolutionize managing strength training</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/strongman.svg" />
+        <link rel="icon" type="image/x-icon" href="/strongman.ico" />
       </Head>
 
       <MantineProvider

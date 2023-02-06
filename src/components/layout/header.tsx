@@ -21,8 +21,12 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginLeft: theme.spacing.lg,
-    marginRight: theme.spacing.lg,
+    marginLeft: theme.spacing.lg * 4,
+    marginRight: theme.spacing.lg * 4,
+    [theme.fn.smallerThan("md")]: {
+      marginLeft: theme.spacing.lg,
+      marginRight: theme.spacing.lg,
+    },
     [theme.fn.smallerThan("sm")]: {
       margin: 0,
     },
@@ -118,7 +122,7 @@ export function HeaderAction({ links }: HeaderActionProps) {
     <Header
       height={HEADER_HEIGHT}
       sx={{ borderBottom: 0, backgroundColor: "rgba(255, 255, 255, 0.05)" }}
-      mb={120}
+      mb={60}
     >
       <Container className={classes.inner} fluid>
         <UnstyledButton component="a" href="/">
