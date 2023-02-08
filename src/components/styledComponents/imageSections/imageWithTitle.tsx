@@ -10,22 +10,21 @@ interface ImgWTtitleProps {
 const useStyles = createStyles((theme) => ({
   title: {
     fontWeight: 700,
-    fontSize: 100,
+    fontSize: 110,
     color: theme.fn.rgba(theme.colors.dark[0], 0.05),
-
-    writingMode: "sideways-lr"
+    lineHeight:1.2,
+    writingMode: "sideways-lr",
+    [theme.fn.smallerThan("md")]: {
+      fontSize: 48,
+    },
   },
-  image: {},
-  container: {
-
-  },
+  container: {},
 }));
 
 export function ImageAndTitle({
   imgSrc,
   imgAlt,
   title,
-  imageWidth,
 }: ImgWTtitleProps): JSX.Element {
   const { classes } = useStyles();
   return (
@@ -40,13 +39,20 @@ export function ImageAndTitle({
       <Text className={classes.title} tt="uppercase">
         {title}
       </Text>
-      <div>
+      <div style={{minWidth: 180}}>
         <Image
-          className={classes.image}
-          radius={25}
+          // radius={25}
           src={imgSrc}
           alt={imgAlt}
-          width={imageWidth}
+          styles={(theme) => ({
+            image: {
+              borderRadius: 25,
+
+              [theme.fn.smallerThan("sm")]: {
+                borderRadius: 15,
+              },
+            },
+          })}
         />
       </div>
     </Flex>
