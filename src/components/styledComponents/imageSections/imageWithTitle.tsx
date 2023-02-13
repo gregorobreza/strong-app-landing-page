@@ -4,7 +4,6 @@ interface ImgWTtitleProps {
   imgSrc: string;
   imgAlt: string;
   title: string;
-  imageWidth: number;
 }
 
 const useStyles = createStyles((theme) => ({
@@ -15,7 +14,13 @@ const useStyles = createStyles((theme) => ({
     lineHeight:1.2,
     writingMode: "sideways-lr",
     [theme.fn.smallerThan("md")]: {
-      fontSize: 48,
+      fontSize: 80,
+    },
+    [theme.fn.smallerThan("sm")]: {
+      fontSize: 60,
+    },
+    [theme.fn.smallerThan("xs")]: {
+      fontSize: 40,
     },
   },
   container: {},
@@ -30,7 +35,7 @@ export function ImageAndTitle({
   return (
     <Flex
       gap={0}
-      justify="flex-end"
+      justify="center"
       align="center"
       direction="row"
       wrap="nowrap"
@@ -41,7 +46,6 @@ export function ImageAndTitle({
       </Text>
       <div style={{minWidth: 180}}>
         <Image
-          // radius={25}
           src={imgSrc}
           alt={imgAlt}
           styles={(theme) => ({

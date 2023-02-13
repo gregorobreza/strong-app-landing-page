@@ -7,37 +7,55 @@ import {
   SectionText,
   SectionTitle,
 } from "@/components/styledComponents/typography/sectionTypography";
-import { Button, Flex, Grid, Group, Stack, Text } from "@mantine/core";
+import { Flex, Grid, Group, MediaQuery } from "@mantine/core";
 
 export function IntroSection(): JSX.Element {
   return (
-    <Grid justify="center" align="center">
+    <Grid justify="center" align="center" gutter="lg">
       <Grid.Col span={12} md={5}>
         <Flex
-          gap={{base:"md", sm: "xl"}}
-          justify={{base: "center", md:"flex-start"}}
-          align={{base: "center", md:"flex-start"}}
+          gap={{ base: "xl", sm: "xl" }}
+          justify={{ base: "center", md: "flex-start" }}
+          align={{ base: "center", md: "flex-start" }}
           direction="column"
         >
           <SectionTitle>MANAGE ALL ASPECTS OF STRENGTH TRAINING</SectionTitle>
-          <SectionText>
+          <SectionText
+            sx={(theme) => ({
+              paddingTop: 20,
+              paddingBottom: 20,
+              [theme.fn.smallerThan("md")]: {
+                paddingTop: 0,
+                paddingBottom: 40,
+              },
+            })}
+          >
             Strength training app for tracking custom workout plans, records
             exercises, and shows progress analytics.
           </SectionText>
-          <Group  position="center">
-            <PrimaryButton>Get early access</PrimaryButton>
-            <SecondaryButton>Tell me more</SecondaryButton>
-          </Group>
+          <MediaQuery smallerThan="md" styles={{ display: "none" }}>
+            <Group position="center" pt={10}>
+              <PrimaryButton>Get early access</PrimaryButton>
+              <SecondaryButton>Tell me more</SecondaryButton>
+            </Group>
+          </MediaQuery>
         </Flex>
       </Grid.Col>
       <Grid.Col span={12} md={7}>
         <ImageAndTitle
-          imgSrc={"/images/man_squats.jpg"}
+          imgSrc={"/images/man_squats_2.jpg"}
           imgAlt={"Man squating"}
           title={"strength"}
-          imageWidth={560}
         />
       </Grid.Col>
+      <MediaQuery largerThan="md" styles={{ display: "none" }}>
+        <Grid.Col span={12} md={7}>
+          <Group position="center" pt="xl">
+            <PrimaryButton>Get early access</PrimaryButton>
+            <SecondaryButton>Tell me more</SecondaryButton>
+          </Group>
+        </Grid.Col>
+      </MediaQuery>
     </Grid>
   );
 }

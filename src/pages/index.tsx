@@ -1,3 +1,4 @@
+import { DedicationSection } from "@/components/dataComponents/sections/dedicationSection";
 import { IntroSection } from "@/components/dataComponents/sections/introSection";
 import { Layout } from "@/components/layout/layout";
 import { Container, Stack } from "@mantine/core";
@@ -16,12 +17,13 @@ export default function Home() {
             paddingRight: theme.spacing.lg * 4,
             maxWidth: 1920,
             [theme.fn.smallerThan("sm")]: {
-              padding: theme.spacing.xl,
+              padding: theme.spacing.lg,
             },
           })}
         >
-          <Stack>
+          <Stack spacing={100}>
             <IntroSection/>
+            <DedicationSection/>
           </Stack>
         </Container>
       </Layout>

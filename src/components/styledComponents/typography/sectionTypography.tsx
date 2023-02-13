@@ -4,6 +4,7 @@ import {
   Title,
   TitleProps,
   Text,
+  Container,
 } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
@@ -36,5 +37,19 @@ export function SectionText({ children, ...props }: TextProps): JSX.Element {
     <Text fw={700} {...props} className={classes.text}>
       {children}
     </Text>
+  );
+}
+
+export function SectionTextContainer({
+  children,
+  ...props
+}: TextProps): JSX.Element {
+  const { classes } = useStyles();
+  return (
+    <Container p="xl" fluid sx={(theme) => ({backgroundColor: theme.fn.rgba("#ffffff", 0.05), borderRadius: theme.radius.lg})}>
+      <Text fw={700} {...props} className={classes.text}>
+        {children}
+      </Text>
+    </Container>
   );
 }
