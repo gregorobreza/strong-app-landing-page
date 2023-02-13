@@ -10,7 +10,7 @@ const useStyles = createStyles((theme) => ({
   title: {
     fontWeight: 700,
     fontSize: 110,
-    color: theme.fn.rgba(theme.colors.dark[0], 0.05),
+    color: theme.fn.rgba(theme.colors.dark[0], 0.08),
     lineHeight:1.2,
     writingMode: "sideways-lr",
     [theme.fn.smallerThan("md")]: {

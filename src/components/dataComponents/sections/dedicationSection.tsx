@@ -12,7 +12,7 @@ import { Flex, Grid, Group, MediaQuery, Space, Text } from "@mantine/core";
 
 export function DedicationSection(): JSX.Element {
   return (
-    <Grid justify="center" align="center" gutter={60}>
+    <Grid justify="center" align="center" >
       <Grid.Col span={12} lg={6} orderLg={2}>
         <Flex
           gap={{ base: "xl", sm: "xl" }}
@@ -47,7 +47,7 @@ export function DedicationSection(): JSX.Element {
           </SectionTextContainer>
         </Flex>
       </Grid.Col>
-      <Grid.Col span={12} lg={6} orderLg={1}>
+      <Grid.Col span={12} lg={6} orderLg={1} pt={{base: "xl", lg:0}}>
         <ImageAndTitle
           imgSrc={"/images/dedication.jpg"}
           imgAlt={"Man with muscular back"}

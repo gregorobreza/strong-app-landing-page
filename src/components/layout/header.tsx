@@ -122,7 +122,7 @@ export function HeaderAction({ links }: HeaderActionProps) {
     <Header
       height={HEADER_HEIGHT}
       sx={{ borderBottom: 0, backgroundColor: "rgba(255, 255, 255, 0.05)" }}
-      mb={60}
+      mb={{base: 40, sm: 60}}
     >
       <Container className={classes.inner} fluid>
         <UnstyledButton component="a" href="/">
