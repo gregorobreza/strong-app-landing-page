@@ -1,3 +1,4 @@
+import { CoachSection } from "@/components/dataComponents/sections/coachSection";
 import { DedicationSection } from "@/components/dataComponents/sections/dedicationSection";
 import { IntroSection } from "@/components/dataComponents/sections/introSection";
 import { Layout } from "@/components/layout/layout";
@@ -24,6 +25,7 @@ export default function Home() {
           <Stack spacing={100}>
             <IntroSection/>
             <DedicationSection/>
+            <CoachSection/>
           </Stack>
         </Container>
       </Layout>
