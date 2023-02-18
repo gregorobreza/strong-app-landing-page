@@ -1,5 +1,6 @@
 import { CoachSection } from "@/components/dataComponents/sections/coachSection";
 import { DedicationSection } from "@/components/dataComponents/sections/dedicationSection";
+import { FeatureSection } from "@/components/dataComponents/sections/featureSection";
 import { IntroSection } from "@/components/dataComponents/sections/introSection";
 import { Layout } from "@/components/layout/layout";
 import { Container, Stack } from "@mantine/core";
@@ -25,6 +26,7 @@ export default function Home() {
           <Stack spacing={100}>
             <IntroSection/>
             <DedicationSection/>
+            <FeatureSection/>
             <CoachSection/>
           </Stack>
         </Container>
