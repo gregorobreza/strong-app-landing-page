@@ -132,7 +132,7 @@ export function HeaderAction({ links }: HeaderActionProps) {
           {items}
         </Group>
         <Group>
-          <Button radius="lg">Get early access</Button>
+          <Button radius="xl">Get early access</Button>
           <Burger
             opened={opened}
             onClick={toggle}

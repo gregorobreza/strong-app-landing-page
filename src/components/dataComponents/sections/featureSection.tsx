@@ -5,8 +5,8 @@ import {
 import {
   SectionTitle
 } from "@/components/styledComponents/typography/sectionTypography";
-import { Carousel } from "@mantine/carousel";
-import { Stack } from "@mantine/core";
+import { Carousel, Embla } from "@mantine/carousel";
+import { Button, Stack } from "@mantine/core";
 import {
   IconChartLine,
   IconDental,
@@ -16,7 +16,7 @@ import {
   IconMessageCircle
 } from "@tabler/icons-react";
 import Autoplay from 'embla-carousel-autoplay';
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const slides: IFeatureBox[] = [
   {
@@ -53,10 +53,13 @@ const slides: IFeatureBox[] = [
 
 export function FeatureSection(): JSX.Element {
     const autoplay = useRef(Autoplay({ delay: 4000 }));
+    const [embla, setEmbla] = useState<Embla | null>(null);
+
+    
   return (
     <Stack spacing="lg">
     <SectionTitle sx={{whiteSpace: "pre-line"}}>EVERYTHING YOU NEED,{"\n"} ALL IN ONE PLACE</SectionTitle>
-   
+   {/* <Button onClick={() => embla?.scrollNext()}>burek</Button> */}
     <Carousel
       slideSize="20%"
       slideGap="xl"
@@ -66,6 +69,7 @@ export function FeatureSection(): JSX.Element {
       plugins={[autoplay.current]}
       onMouseEnter={autoplay.current.stop}
       onMouseLeave={autoplay.current.reset}
+      getEmblaApi={setEmbla}
       withControls={false}
       breakpoints={[
         { maxWidth: 1650, slideSize: '25%' },
