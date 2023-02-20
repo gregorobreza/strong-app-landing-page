@@ -77,7 +77,7 @@ export function CoachSection(): JSX.Element {
         <ImageAndTitle
           imgSrc={"/images/coach.jpg"}
           imgAlt={"Man with vision"}
-          title={"professional\nresults"}
+          title={"results\nprofessional"}
         />
       </Grid.Col>
     </Grid>
