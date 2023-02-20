@@ -12,8 +12,9 @@ const useStyles = createStyles((theme) => ({
     fontSize: 110,
     color: theme.fn.rgba(theme.colors.dark[0], 0.08),
     lineHeight:1.2,
-    writingMode: "sideways-lr",
+    writingMode: "vertical-lr",
     whiteSpace: "pre-line",
+    transform: "rotate(180deg)",
     [theme.fn.smallerThan("md")]: {
       fontSize: 80,
     },

@@ -1,18 +1,22 @@
 import {
   FeatureContainer,
-  IFeatureBox,
+  IFeatureBox
 } from "@/components/styledComponents/features/featureContainer";
+import {
+  SectionTitle
+} from "@/components/styledComponents/typography/sectionTypography";
 import { Carousel } from "@mantine/carousel";
+import { Stack } from "@mantine/core";
 import {
   IconChartLine,
   IconDental,
   IconDeviceDesktop,
   IconDeviceMobile,
   IconListDetails,
-  IconMessageCircle,
+  IconMessageCircle
 } from "@tabler/icons-react";
-import { useRef } from "react";
 import Autoplay from 'embla-carousel-autoplay';
+import { useRef } from "react";
 
 const slides: IFeatureBox[] = [
   {
@@ -48,8 +52,11 @@ const slides: IFeatureBox[] = [
 ];
 
 export function FeatureSection(): JSX.Element {
-    const autoplay = useRef(Autoplay({ delay: 5000 }));
+    const autoplay = useRef(Autoplay({ delay: 4000 }));
   return (
+    <Stack spacing="lg">
+    <SectionTitle sx={{whiteSpace: "pre-line"}}>EVERYTHING YOU NEED,{"\n"} ALL IN ONE PLACE</SectionTitle>
+   
     <Carousel
       slideSize="20%"
       slideGap="xl"
@@ -59,9 +66,12 @@ export function FeatureSection(): JSX.Element {
       plugins={[autoplay.current]}
       onMouseEnter={autoplay.current.stop}
       onMouseLeave={autoplay.current.reset}
+      withControls={false}
       breakpoints={[
-        { maxWidth: 'md', slideSize: '40%' },
-        { maxWidth: 'sm', slideSize: '100%', slideGap: 0 },
+        { maxWidth: 1650, slideSize: '25%' },
+        { maxWidth: 1400, slideSize: '33.33333333%' },
+        { maxWidth: 'md', slideSize: '50%'},
+        { maxWidth: 'sm', slideSize: '100%'},
       ]}
     >
       {slides.map((value, index) => (
@@ -74,5 +84,6 @@ export function FeatureSection(): JSX.Element {
         </Carousel.Slide>
       ))}
     </Carousel>
+    </Stack>
   );
 }
