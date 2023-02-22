@@ -44,7 +44,7 @@ export function CoachSection(): JSX.Element {
           align={{ base: "center", md: "flex-start" }}
           direction="column"
         >
-          <SectionTitle>TRANSFORM YOUR STRENGTH COACHING</SectionTitle>
+          <SectionTitle>ARE YOU STRENGTH COACH? TRANSFORM YOUR STRENGTH COACHING</SectionTitle>
           <SectionText
             sx={(theme) => ({
               paddingTop: 20,

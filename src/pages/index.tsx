@@ -2,6 +2,7 @@ import { CoachSection } from "@/components/dataComponents/sections/coachSection"
 import { DedicationSection } from "@/components/dataComponents/sections/dedicationSection";
 import { FeatureSection } from "@/components/dataComponents/sections/featureSection";
 import { IntroSection } from "@/components/dataComponents/sections/introSection";
+import { SignUpSection } from "@/components/dataComponents/sections/signUpSection";
 import { Layout } from "@/components/layout/layout";
 import { Container, Stack } from "@mantine/core";
 import { Inter } from "@next/font/google";
@@ -28,6 +29,7 @@ export default function Home() {
             <DedicationSection/>
             <FeatureSection/>
             <CoachSection/>
+            <SignUpSection/>
           </Stack>
         </Container>
       </Layout>

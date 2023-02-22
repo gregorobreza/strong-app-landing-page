@@ -14,6 +14,10 @@ export const LINKS: HeaderActionProps = {
       link: "/about",
       label: "For Coaches",
     },
+    {
+      link: "/about",
+      label: "For Athletes",
+    },
     // {
     //   link: "#1",
     //   label: "Learn",
