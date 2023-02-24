@@ -1,12 +1,13 @@
 import {
+  Box,
   Checkbox,
-  SegmentedControl,
-  Stack,
-  TextInput,
-  Text,
   Chip,
   Collapse,
-  Box,
+  createStyles,
+  SegmentedControl,
+  Stack,
+  Text,
+  TextInput,
 } from "@mantine/core";
 import {
   Field,
@@ -15,10 +16,12 @@ import {
   Formik,
   FormikHelpers,
   FormikProps,
-  FormikValues,
 } from "formik";
 import { PrimaryButton } from "../styledComponents/buttons/mainButtons";
-import { SectionTitle } from "../styledComponents/typography/sectionTypography";
+import {
+  SectionText,
+  SectionTitle,
+} from "../styledComponents/typography/sectionTypography";
 
 interface ISignUpForm {
   email: string;
@@ -28,12 +31,23 @@ interface ISignUpForm {
   surveys: boolean;
 }
 
+const useStyles = createStyles((theme) => ({
+  controlActive: {
+    backgroundColor: theme.colors.steelteal[6],
+  },
+  label: {
+    color: theme.white,
+  },
+}));
+
 export function SignUpForm(): JSX.Element {
+  const { classes } = useStyles();
+
   const initialValues: ISignUpForm = {
     email: "",
     interestedAs: ["athlete"],
-    athleteLevel: "",
-    coachLevel: "",
+    athleteLevel: "recreational",
+    coachLevel: "recreational",
     surveys: true,
   };
 
@@ -58,16 +72,15 @@ export function SignUpForm(): JSX.Element {
                     meta.error !== undefined && meta.touched;
                   return (
                     <TextInput
-                    styles={(theme) => ({
-                      input: {
-                        backgroundColor:theme.colors.grayf[0],
-                        color: "currentColor"
-                      },
-                      label:{
-                        color: "currentcolor"
-                      },
-                      
-                    })}
+                      styles={(theme) => ({
+                        input: {
+                          backgroundColor: theme.colors.grayf[0],
+                          color: "currentColor",
+                        },
+                        label: {
+                          color: "currentcolor",
+                        },
+                      })}
                       radius="xl"
                       label="Your email address"
                       size="md"
@@ -100,8 +113,12 @@ export function SignUpForm(): JSX.Element {
                         }
                         multiple
                       >
-                        <Chip value="athlete">an Athlete</Chip>
-                        <Chip value="coach">a Coach</Chip>
+                        <Chip size="md" value="athlete" color="steelteal.6">
+                          an Athlete
+                        </Chip>
+                        <Chip size="md" value="coach" color="steelteal.6">
+                          a Coach
+                        </Chip>
                       </Chip.Group>
                     </Stack>
                   );
@@ -118,6 +135,10 @@ export function SignUpForm(): JSX.Element {
                       <Stack spacing="xs">
                         <Text>As an athlete I am into strength training:</Text>
                         <SegmentedControl
+                          classNames={{
+                            controlActive: classes.controlActive,
+                            label: classes.label,
+                          }}
                           value={field.value}
                           onChange={(value) =>
                             form.setFieldValue(field.name, value)
@@ -146,6 +167,10 @@ export function SignUpForm(): JSX.Element {
                       <Stack spacing="xs">
                         <Text>As a coach I help athletes that are:</Text>
                         <SegmentedControl
+                          classNames={{
+                            controlActive: classes.controlActive,
+                            label: classes.label,
+                          }}
                           value={field.value}
                           onChange={(value) =>
                             form.setFieldValue(field.name, value)
@@ -172,8 +197,11 @@ export function SignUpForm(): JSX.Element {
                       meta.error !== undefined && meta.touched;
                     return (
                       <Checkbox
-                      styles={(theme) => ({label:{color: "currentColor"}})}
+                        styles={(theme) => ({
+                          label: { color: theme.colors.dark },
+                        })}
                         size="md"
+                        color="steelteal.6"
                         checked={field.value}
                         onChange={(event) =>
                           form.setFieldValue(
@@ -181,12 +209,17 @@ export function SignUpForm(): JSX.Element {
                             event.currentTarget.checked
                           )
                         }
-                        label="I want to participate in occasional surveys*"
+                        label={
+                          <Text>
+                            I want to participate in occasional surveys*{" "}
+                          </Text>
+                        }
                       />
                     );
                   }}
                 </Field>
               </Box>
+
               <PrimaryButton type="submit" size="md">
                 Submit
               </PrimaryButton>
