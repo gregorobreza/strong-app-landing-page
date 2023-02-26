@@ -1,5 +1,10 @@
 import { useTheme } from "@emotion/react";
-import { Button, ButtonProps, createStyles, useMantineTheme } from "@mantine/core";
+import {
+  Button,
+  ButtonProps,
+  createStyles,
+  useMantineTheme,
+} from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
 const useStyles = createStyles((theme) => ({
@@ -11,14 +16,19 @@ const useStyles = createStyles((theme) => ({
   secondaryButton: {},
 }));
 
-export function PrimaryButton(props: ButtonProps): JSX.Element {
+interface IButtonProps {
+  onClick?: () => void;
+}
+
+export function PrimaryButton({onClick, ...props}:  IButtonProps & ButtonProps): JSX.Element {
   const { classes } = useStyles();
-  const theme = useMantineTheme()
+  const theme = useMantineTheme();
   const mediumScreen = useMediaQuery(`(min-width: ${theme.breakpoints.md}px`);
   return (
     <Button
       radius="xl"
       size={mediumScreen ? "lg" : "md"}
+      onClick={(event) => onClick ? onClick() : event.preventDefault()}
       styles={(theme) => ({
         // root: {
         //   backgroundColor: theme.colors.steelteal[6],
@@ -32,7 +42,7 @@ export function PrimaryButton(props: ButtonProps): JSX.Element {
 }
 
 export function SecondaryButton(props: ButtonProps): JSX.Element {
-  const theme = useMantineTheme()
+  const theme = useMantineTheme();
   const mediumScreen = useMediaQuery(`(min-width: ${theme.breakpoints.md}px`);
   return (
     <Button
@@ -41,9 +51,9 @@ export function SecondaryButton(props: ButtonProps): JSX.Element {
       styles={(theme) => ({
         root: {
           backgroundColor: theme.colors.steelteal[6],
-          "&:hover":{
+          "&:hover": {
             backgroundColor: theme.colors.steelteal[8],
-          }
+          },
         },
       })}
       {...props}

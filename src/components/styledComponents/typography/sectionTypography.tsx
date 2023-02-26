@@ -20,6 +20,22 @@ const useStyles = createStyles((theme) => ({
       fontSize: theme.fontSizes.md,
     },
   },
+  bigTitle: {
+    fontWeight: 700,
+    fontSize: 110,
+    color: theme.fn.rgba(theme.colors.dark[0], 0.08),
+    lineHeight: 1.2,
+    [theme.fn.smallerThan("md")]: {
+      fontSize: 80,
+      textAlign: "center",
+    },
+    [theme.fn.smallerThan("sm")]: {
+      fontSize: 60,
+    },
+    [theme.fn.smallerThan("xs")]: {
+      fontSize: 40,
+    },
+  },
 }));
 
 export function SectionTitle({ children, ...props }: TitleProps): JSX.Element {
@@ -51,5 +67,14 @@ export function SectionTextContainer({
         {children}
       </Text>
     </Container>
+  );
+}
+
+export function SectionBigTitle({ children, ...props }: TitleProps): JSX.Element {
+  const { classes } = useStyles();
+  return (
+    <Title order={2} {...props} className={classes.bigTitle}>
+      {children}
+    </Title>
   );
 }

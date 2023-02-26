@@ -5,7 +5,7 @@ import { Flex, MediaQuery, Stack } from "@mantine/core";
 
 export function SignUpSection(): JSX.Element {
   const LeftSection = (): JSX.Element => (
-    <Flex m={50} direction="column" justify="space-between" gap="xl">
+    <Flex m={{base: 30, sm: 70}} direction="column" justify="space-between" gap={100}>
       <SectionText>
         Unlock a world of improved strength training with exclusive access to
         our new platform. Be the first to try it out, free of charge. Simply
@@ -27,14 +27,14 @@ export function SignUpSection(): JSX.Element {
     </Flex>
   );
   const BottomSection = (): JSX.Element => (
-    <Flex m={50} direction="column" justify="space-between" gap="xl">
+    <Flex m={{base: 30, sm: 70}} direction="column" justify="space-between" gap="xl">
       <SectionText>
         *Be a part of shaping the future of strength training by joining our
         survey program. With just a few occasional, simple questionnaires sent
         directly to your email, you&apos;ll have the opportunity to share your
         thoughts on what you want and need from current solutions on the market.
         And don&apos;t worry, we respect your time and won&apos;t send any
-        unwanted emails. You can opt-out at any time.
+        unwanted emails. You can opt-out at any time. We appreciate your help!
       </SectionText>
     </Flex>
   );
@@ -43,7 +43,6 @@ export function SignUpSection(): JSX.Element {
     <SignUpLayout
       leftSection={<LeftSection />}
       rightSection={<SignUpForm />}
-      bottomSectionMobile={<BottomSection />}
-    />
+      bottomSectionMobile={<BottomSection />} sectionBigTitle={"ACHIEVE YOUR GOALS"}    />
   );
 }

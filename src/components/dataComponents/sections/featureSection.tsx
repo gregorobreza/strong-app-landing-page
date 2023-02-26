@@ -1,21 +1,22 @@
 import {
   FeatureContainer,
-  IFeatureBox
+  IFeatureBox,
 } from "@/components/styledComponents/features/featureContainer";
 import {
-  SectionTitle
+  SectionBigTitle,
+  SectionTitle,
 } from "@/components/styledComponents/typography/sectionTypography";
 import { Carousel, Embla } from "@mantine/carousel";
-import { Button, Stack } from "@mantine/core";
+import { Button, Group, MediaQuery, Stack } from "@mantine/core";
 import {
   IconChartLine,
   IconDental,
   IconDeviceDesktop,
   IconDeviceMobile,
   IconListDetails,
-  IconMessageCircle
+  IconMessageCircle,
 } from "@tabler/icons-react";
-import Autoplay from 'embla-carousel-autoplay';
+import Autoplay from "embla-carousel-autoplay";
 import { useRef, useState } from "react";
 
 const slides: IFeatureBox[] = [
@@ -52,42 +53,51 @@ const slides: IFeatureBox[] = [
 ];
 
 export function FeatureSection(): JSX.Element {
-    const autoplay = useRef(Autoplay({ delay: 4000 }));
-    const [embla, setEmbla] = useState<Embla | null>(null);
+  const autoplay = useRef(Autoplay({ delay: 4000 }));
+  const [embla, setEmbla] = useState<Embla | null>(null);
 
-    
   return (
     <Stack spacing="lg">
-    <SectionTitle sx={{whiteSpace: "pre-line"}}>EVERYTHING YOU NEED,{"\n"} ALL IN ONE PLACE</SectionTitle>
-   {/* <Button onClick={() => embla?.scrollNext()}>burek</Button> */}
-    <Carousel
-      slideSize="20%"
-      slideGap="xl"
-      loop
-      align="center"
-      slidesToScroll={1}
-      plugins={[autoplay.current]}
-      onMouseEnter={autoplay.current.stop}
-      onMouseLeave={autoplay.current.reset}
-      getEmblaApi={setEmbla}
-      withControls={false}
-      breakpoints={[
-        { maxWidth: 1650, slideSize: '25%' },
-        { maxWidth: 1400, slideSize: '33.33333333%' },
-        { maxWidth: 'md', slideSize: '50%'},
-        { maxWidth: 'sm', slideSize: '100%'},
-      ]}
-    >
-      {slides.map((value, index) => (
-        <Carousel.Slide key={index}>
-          <FeatureContainer
-            Icon={value.Icon}
-            title={value.title}
-            text={value.text}
-          />
-        </Carousel.Slide>
-      ))}
-    </Carousel>
+      <Group position="apart">
+        <SectionTitle sx={{ whiteSpace: "pre-line" }}>
+          EVERYTHING YOU NEED,{"\n"} ALL IN ONE PLACE
+        </SectionTitle>
+        <MediaQuery smallerThan="lg" styles={{ display: "none" }}>
+          <div>
+            <SectionBigTitle>FOCUS</SectionBigTitle>
+          </div>
+        </MediaQuery>
+      </Group>
+      {/* <Button onClick={() => embla?.scrollNext()}>burek</Button> */}
+      <Carousel
+        slideSize="20%"
+        slideGap="xl"
+        loop
+        align="center"
+        slidesToScroll={1}
+        plugins={[autoplay.current]}
+        onMouseEnter={autoplay.current.stop}
+        onMouseLeave={autoplay.current.reset}
+        getEmblaApi={setEmbla}
+        withControls={false}
+        breakpoints={[
+          { maxWidth: 1650, slideSize: "25%" },
+          { maxWidth: 1400, slideSize: "33.33333333%" },
+          { maxWidth: "md", slideSize: "50%" },
+          { maxWidth: "sm", slideSize: "100%" },
+        ]}
+      >
+        {slides.map((value, index) => (
+          <Carousel.Slide key={index}>
+            <FeatureContainer
+              Icon={value.Icon}
+              title={value.title}
+              text={value.text}
+            />
+          </Carousel.Slide>
+        ))}
+      </Carousel>
+     
     </Stack>
   );
 }
