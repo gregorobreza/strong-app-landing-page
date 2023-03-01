@@ -7,8 +7,10 @@ import {
   SectionTitle,
 } from "@/components/styledComponents/typography/sectionTypography";
 import { Carousel, Embla } from "@mantine/carousel";
-import { Button, Group, MediaQuery, Stack } from "@mantine/core";
+import { ActionIcon, Button, Group, MediaQuery, Stack } from "@mantine/core";
 import {
+  IconArrowNarrowLeft,
+  IconArrowNarrowRight,
   IconChartLine,
   IconDental,
   IconDeviceDesktop,
@@ -97,7 +99,32 @@ export function FeatureSection(): JSX.Element {
           </Carousel.Slide>
         ))}
       </Carousel>
-     
+      <Group>
+        <ActionIcon
+          color="white"
+          size="xl"
+          radius="xl"
+          variant="outline"
+          onClick={() => {
+            embla?.scrollPrev();
+            embla?.plugins().autoplay?.stop();
+          }}
+        >
+          <IconArrowNarrowLeft size={30} />
+        </ActionIcon>
+        <ActionIcon
+          color="white"
+          size="xl"
+          radius="xl"
+          variant="outline"
+          onClick={() => {
+            embla?.scrollNext();
+            embla?.plugins().autoplay?.stop();
+          }}
+        >
+          <IconArrowNarrowRight size={30} />
+        </ActionIcon>
+      </Group>
     </Stack>
   );
 }

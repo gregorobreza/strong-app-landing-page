@@ -4,7 +4,7 @@ import { FeatureSection } from "@/components/dataComponents/sections/featureSect
 import { IntroSection } from "@/components/dataComponents/sections/introSection";
 import { SignUpSection } from "@/components/dataComponents/sections/signUpSection";
 import { Layout } from "@/components/layout/layout";
-import { Container, Stack } from "@mantine/core";
+import { Container, Flex, Stack } from "@mantine/core";
 import { Inter } from "@next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,13 +24,13 @@ export default function Home() {
             },
           })}
         >
-          <Stack spacing={100}>
+          <Flex direction="column"  gap={{base: 70, sm: 200}}>
             <IntroSection/>
             <DedicationSection/>
             <FeatureSection/>
             <CoachSection/>
             <SignUpSection/>
-          </Stack>
+          </Flex>
         </Container>
       </Layout>
     </>

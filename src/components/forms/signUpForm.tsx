@@ -22,6 +22,7 @@ import {
   FormikProps,
 } from "formik";
 import { useState } from "react";
+import { object, string } from "yup";
 import { PrimaryButton } from "../styledComponents/buttons/mainButtons";
 import {
   SectionText,
@@ -58,6 +59,12 @@ export function SignUpForm(): JSX.Element {
     surveys: true,
   };
 
+  const validatorSchema = object().shape({
+    email: string()
+      .required("Email is required")
+      .email("Please provide valid email"),
+  });
+
   return (
     <Box
       py={{ base: 20, sm: 50 }}
@@ -90,6 +97,7 @@ export function SignUpForm(): JSX.Element {
         </Modal>
         <Formik
           initialValues={initialValues}
+          validationSchema={validatorSchema}
           onSubmit={(
             values: ISignUpForm,
             formikHelpers: FormikHelpers<ISignUpForm>
@@ -258,7 +266,9 @@ export function SignUpForm(): JSX.Element {
                               </Text>
                             }
                           />
-                          <div style={{display: "flex", alignItems:"center"}}>
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
                             <IconInfoCircle
                               style={{ cursor: "pointer" }}
                               onClick={() => setOpened(true)}
@@ -270,7 +280,10 @@ export function SignUpForm(): JSX.Element {
                   </Field>
                 </Box>
 
-                <PrimaryButton type="submit" size="md">
+                <PrimaryButton
+                  onClick={() => formikProps.submitForm()}
+                  size="md"
+                >
                   Submit
                 </PrimaryButton>
               </Stack>
