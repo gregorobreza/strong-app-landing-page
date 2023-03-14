@@ -1,5 +1,5 @@
 import { StrongFooterProps } from "@/staticData/footerLinks";
-import { ActionIcon, Anchor, createStyles, Group, Text } from "@mantine/core";
+import { ActionIcon, Anchor, createStyles, Group, px, Text } from "@mantine/core";
 import {
   IconBrandDiscord,
   IconBrandInstagram,
@@ -21,9 +21,10 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: `${theme.spacing.md}px ${theme.spacing.md}px`,
-    marginLeft: theme.spacing.lg * 4,
-    marginRight: theme.spacing.lg * 4,
+    paddingTop: theme.spacing.md,
+    paddingBottom: theme.spacing.md,
+    marginLeft: `calc(${theme.spacing.lg} * 4)`,
+    marginRight: `calc(${theme.spacing.lg} * 4)`,
     [theme.fn.smallerThan("md")]: {
         marginLeft: theme.spacing.lg,
         marginRight: theme.spacing.lg,

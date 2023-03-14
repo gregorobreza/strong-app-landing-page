@@ -21,8 +21,8 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginLeft: theme.spacing.lg * 4,
-    marginRight: theme.spacing.lg * 4,
+    marginLeft: `calc(${theme.spacing.lg} * 4)`,
+    marginRight: `calc(${theme.spacing.lg} * 4)`,
     [theme.fn.smallerThan("md")]: {
       marginLeft: theme.spacing.lg,
       marginRight: theme.spacing.lg,
@@ -88,7 +88,7 @@ export function HeaderAction({ links }: HeaderActionProps) {
 
     if (menuItems) {
       return (
-        <Menu key={link.label} trigger="hover" exitTransitionDuration={0}>
+        <Menu key={link.label} trigger="hover">
           <Menu.Target>
             <a
               href={link.link}

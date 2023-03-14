@@ -37,7 +37,7 @@ export function SignUpLayout({
 }: ISignUpLayout): JSX.Element {
   const { classes } = useStyles();
   return (
-    <Stack>
+    <Stack >
       <SectionBigTitle>{sectionBigTitle}</SectionBigTitle>
       <Box className={classes.box}>
         <Grid m={0}>

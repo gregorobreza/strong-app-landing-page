@@ -44,10 +44,10 @@ export const LINKS: HeaderActionProps = {
     //   link: "/about",
     //   label: "About",
     // },
-    {
-      link: "/pricing",
-      label: "Pricing",
-    },
+    // {
+    //   link: "/pricing",
+    //   label: "Pricing",
+    // },
     // {
     //   link: "#2",
     //   label: "Support",

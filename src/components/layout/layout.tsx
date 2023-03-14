@@ -5,9 +5,11 @@ import { PropsWithChildren } from "react";
 import { StrongFooter } from "./footer";
 import { HeaderAction } from "./header";
 
-interface LayoutProps {}
+interface LayoutProps {
+  scrollTo: any
+}
 
-export function Layout({ children, ...props }: PropsWithChildren<LayoutProps>) {
+export function Layout({ children,scrollTo,  ...props }: PropsWithChildren<LayoutProps>) {
   return (
     <AppShell
       styles={{

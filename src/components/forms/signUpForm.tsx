@@ -155,13 +155,16 @@ export function SignUpForm(): JSX.Element {
                             form.setFieldValue(field.name, value)
                           }
                           multiple
+                          
                         >
+                          <Group>
                           <Chip size="md" value="athlete" color="steelteal.6">
                             an Athlete
                           </Chip>
                           <Chip size="md" value="coach" color="steelteal.6">
                             a Coach
                           </Chip>
+                          </Group>
                         </Chip.Group>
                       </Stack>
                     );

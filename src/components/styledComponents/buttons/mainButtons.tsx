@@ -51,9 +51,9 @@ export function SecondaryButton(props: ButtonProps): JSX.Element {
       styles={(theme) => ({
         root: {
           backgroundColor: theme.colors.steelteal[6],
-          "&:hover": {
+          '&:not([data-disabled])': theme.fn.hover({
             backgroundColor: theme.colors.steelteal[8],
-          },
+          }),
         },
       })}
       {...props}
