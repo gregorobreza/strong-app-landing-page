@@ -1,3 +1,4 @@
+import { SectionName } from "@/components/layout/header";
 import {
   PrimaryButton,
   SecondaryButton,
@@ -9,7 +10,7 @@ import {
 } from "@/components/styledComponents/typography/sectionTypography";
 import { Flex, Grid, Group, MediaQuery } from "@mantine/core";
 
-export function IntroSection(): JSX.Element {
+export function IntroSection({scrollTo}: {scrollTo: Record<"dedication" | "signUp", any>}): JSX.Element {
   return (
     <Grid justify="center" align="center" gutter="lg">
       <Grid.Col span={12} md={5}>
@@ -35,8 +36,8 @@ export function IntroSection(): JSX.Element {
           </SectionText>
           <MediaQuery smallerThan="md" styles={{ display: "none" }}>
             <Group position="center" pt={10}>
-              <PrimaryButton>Get early access</PrimaryButton>
-              <SecondaryButton>Tell me more</SecondaryButton>
+              <PrimaryButton onClick={()=> scrollTo.signUp()}>Get early access</PrimaryButton>
+              <SecondaryButton onClick={()=> scrollTo.dedication()}>Tell me more</SecondaryButton>
             </Group>
           </MediaQuery>
         </Flex>

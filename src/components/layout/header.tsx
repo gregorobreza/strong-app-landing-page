@@ -12,6 +12,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
 import { Image } from "@mantine/core";
+import { MobileDrawer } from "../styledComponents/mobileComponents/mobileMenu";
 
 const HEADER_HEIGHT = 70;
 
@@ -91,7 +92,7 @@ export interface scrollToProps{
 
 export function HeaderAction({ links, scrollTo }: {links: HeaderActionProps, scrollTo:  Record<SectionName, any>}) {
   const { classes } = useStyles();
-  const [opened, { toggle }] = useDisclosure(false);
+  const [opened, { toggle, close }] = useDisclosure(false);
   const items = links.links.map((link) => {
     const menuItems = link.links?.map((item) => (
       <Menu.Item key={item.link}>{item.label}</Menu.Item>
@@ -135,6 +136,9 @@ export function HeaderAction({ links, scrollTo }: {links: HeaderActionProps, scr
       sx={{ borderBottom: 0, backgroundColor: "rgba(255, 255, 255, 0.05)" }}
       mb={{base: 40, sm: 60}}
     >
+      <MobileDrawer opened={opened} close={close}>
+        burek
+      </MobileDrawer>
       <Container className={classes.inner} fluid>
         <UnstyledButton component="a" href="/">
           <Image src="/strongman.svg" alt="Strong app logo" width={50} />

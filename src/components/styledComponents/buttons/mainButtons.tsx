@@ -41,13 +41,14 @@ export function PrimaryButton({onClick, ...props}:  IButtonProps & ButtonProps):
   );
 }
 
-export function SecondaryButton(props: ButtonProps): JSX.Element {
+export function SecondaryButton({onClick, ...props}:  IButtonProps & ButtonProps): JSX.Element {
   const theme = useMantineTheme();
   const mediumScreen = useMediaQuery(`(min-width: ${theme.breakpoints.md}px`);
   return (
     <Button
       radius="xl"
       size={mediumScreen ? "lg" : "md"}
+      onClick={(event) => onClick ? onClick() : event.preventDefault()}
       styles={(theme) => ({
         root: {
           backgroundColor: theme.colors.steelteal[6],

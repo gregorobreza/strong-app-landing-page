@@ -42,7 +42,7 @@ export default function Home() {
         >
           <Flex direction="column" gap={{ base: 70, sm: 200 }}>
             <Box ref={introRef}>
-              <IntroSection />
+              <IntroSection scrollTo={{dedication: scrollToDedication,signUp: scrollToSignUp }} />
             </Box>
             <Box ref={dedicationRef}>
               <DedicationSection />

@@ -3,7 +3,7 @@ import { LINKS } from "@/staticData/headerLinks";
 import { AppShell } from "@mantine/core";
 import { PropsWithChildren } from "react";
 import { StrongFooter } from "./footer";
-import { HeaderAction, scrollToProps, SectionName } from "./header";
+import { HeaderAction, SectionName } from "./header";
 
 interface LayoutProps {
   scrollTo: Record<SectionName, any>
