@@ -3,10 +3,10 @@ import { LINKS } from "@/staticData/headerLinks";
 import { AppShell } from "@mantine/core";
 import { PropsWithChildren } from "react";
 import { StrongFooter } from "./footer";
-import { HeaderAction } from "./header";
+import { HeaderAction, scrollToProps, SectionName } from "./header";
 
 interface LayoutProps {
-  scrollTo: any
+  scrollTo: Record<SectionName, any>
 }
 
 export function Layout({ children,scrollTo,  ...props }: PropsWithChildren<LayoutProps>) {
@@ -17,7 +17,7 @@ export function Layout({ children,scrollTo,  ...props }: PropsWithChildren<Layou
           padding: 0,
         },
       }}
-      header={<HeaderAction links={LINKS.links} />}
+      header={<HeaderAction links={LINKS} scrollTo={scrollTo} />}
       footer={<StrongFooter links={footerLinks.links} />}
       fixed={false}
     >

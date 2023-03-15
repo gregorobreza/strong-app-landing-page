@@ -28,7 +28,7 @@ export default function Home() {
   });
   return (
     <>
-      <Layout scrollTo={{dedication: scrollToDedication}}>
+      <Layout scrollTo={{dedication: scrollToDedication, intro: scrollToIntro, features: scrollToFeature, coach: scrollToCoach, signUp: scrollToSignUp}}>
         <Container
           fluid
           sx={(theme) => ({

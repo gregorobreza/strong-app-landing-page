@@ -70,18 +70,29 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+export type SectionName = "dedication" | "intro" | "features" | "coach" | "signUp";
+
 export interface HeaderActionProps {
   links: {
-    link: string;
+    setionName: SectionName;
     label: string;
     links?: { link: string; label: string }[];
   }[];
 }
 
-export function HeaderAction({ links }: HeaderActionProps) {
+
+export interface scrollToProps{
+  dedication: any,
+  intro: any,
+  features: any,
+  coach: any,
+  signUp: any,
+}
+
+export function HeaderAction({ links, scrollTo }: {links: HeaderActionProps, scrollTo:  Record<SectionName, any>}) {
   const { classes } = useStyles();
   const [opened, { toggle }] = useDisclosure(false);
-  const items = links.map((link) => {
+  const items = links.links.map((link) => {
     const menuItems = link.links?.map((item) => (
       <Menu.Item key={item.link}>{item.label}</Menu.Item>
     ));
@@ -91,7 +102,7 @@ export function HeaderAction({ links }: HeaderActionProps) {
         <Menu key={link.label} trigger="hover">
           <Menu.Target>
             <a
-              href={link.link}
+              href={link.setionName}
               className={classes.link}
               onClick={(event) => event.preventDefault()}
             >
@@ -107,14 +118,14 @@ export function HeaderAction({ links }: HeaderActionProps) {
     }
 
     return (
-      <a
+      <UnstyledButton
         key={link.label}
-        href={link.link}
+        onClick={()=>scrollTo[link.setionName]()}
         className={classes.link}
-        onClick={(event) => event.preventDefault()}
+        
       >
         {link.label}
-      </a>
+      </UnstyledButton>
     );
   });
 
@@ -132,7 +143,7 @@ export function HeaderAction({ links }: HeaderActionProps) {
           {items}
         </Group>
         <Group>
-          <Button radius="xl">Get early access</Button>
+          <Button radius="xl" onClick={()=> scrollTo.signUp()}>Get early access</Button>
           <Burger
             opened={opened}
             onClick={toggle}

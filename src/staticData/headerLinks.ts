@@ -3,19 +3,19 @@ import { HeaderActionProps } from "@/components/layout/header";
 export const LINKS: HeaderActionProps = {
   links: [
     {
-      link: "/about",
+      setionName: "dedication",
       label: "About",
     },
     {
-      link: "/about",
+      setionName: "features",
       label: "Features",
     },
     {
-      link: "/about",
+      setionName: "coach",
       label: "For Coaches",
     },
     {
-      link: "/about",
+      setionName: "dedication",
       label: "For Athletes",
     },
     // {
