@@ -72,5 +72,5 @@ export const defaultThemeOverride: MantineThemeOverride = {
   colorScheme: "dark",
   primaryColor: "red",
   fontFamily: "Open Sans, sans-serif",
-  // headings: { fontFamily: "Roboto, sans-serif" },
+  headings: { fontFamily: "Oswald, sans-serif" },
 };

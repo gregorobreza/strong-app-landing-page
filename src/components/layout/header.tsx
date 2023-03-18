@@ -8,13 +8,14 @@ import {
   Button,
   Burger,
   UnstyledButton,
+  Stack,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
 import { Image } from "@mantine/core";
 import { MobileDrawer } from "../styledComponents/mobileComponents/mobileMenu";
 
-const HEADER_HEIGHT = 70;
+export const HEADER_HEIGHT = 70;
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -65,13 +66,38 @@ const useStyles = createStyles((theme) => ({
           : theme.colors.gray[0],
     },
   },
+  mobileLink: {
+    display: "block",
+    lineHeight: 1,
+    padding: "10px 12px",
+    borderRadius: theme.radius.md,
+    textDecoration: "none",
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.grayf[0]
+        : theme.colors.gray[7],
+    fontSize: theme.fontSizes.xl,
+    fontWeight: 700,
+
+    "&:hover": {
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[7]
+          : theme.colors.gray[0],
+    },
+  },
 
   linkLabel: {
     marginRight: 5,
   },
 }));
 
-export type SectionName = "dedication" | "intro" | "features" | "coach" | "signUp";
+export type SectionName =
+  | "dedication"
+  | "intro"
+  | "features"
+  | "coach"
+  | "signUp";
 
 export interface HeaderActionProps {
   links: {
@@ -81,16 +107,21 @@ export interface HeaderActionProps {
   }[];
 }
 
-
-export interface scrollToProps{
-  dedication: any,
-  intro: any,
-  features: any,
-  coach: any,
-  signUp: any,
+export interface scrollToProps {
+  dedication: any;
+  intro: any;
+  features: any;
+  coach: any;
+  signUp: any;
 }
 
-export function HeaderAction({ links, scrollTo }: {links: HeaderActionProps, scrollTo:  Record<SectionName, any>}) {
+export function HeaderAction({
+  links,
+  scrollTo,
+}: {
+  links: HeaderActionProps;
+  scrollTo: Record<SectionName, any>;
+}) {
   const { classes } = useStyles();
   const [opened, { toggle, close }] = useDisclosure(false);
   const items = links.links.map((link) => {
@@ -121,9 +152,26 @@ export function HeaderAction({ links, scrollTo }: {links: HeaderActionProps, scr
     return (
       <UnstyledButton
         key={link.label}
-        onClick={()=>scrollTo[link.setionName]()}
+        onClick={() => {
+          scrollTo[link.setionName]();
+          close();
+        }}
         className={classes.link}
-        
+      >
+        {link.label}
+      </UnstyledButton>
+    );
+  });
+
+  const mobileItems = links.links.map((link) => {
+    return (
+      <UnstyledButton
+        key={link.label}
+        onClick={() => {
+          scrollTo[link.setionName]();
+          close();
+        }}
+        className={classes.mobileLink}
       >
         {link.label}
       </UnstyledButton>
@@ -133,11 +181,17 @@ export function HeaderAction({ links, scrollTo }: {links: HeaderActionProps, scr
   return (
     <Header
       height={HEADER_HEIGHT}
-      sx={{ borderBottom: 0, backgroundColor: "rgba(255, 255, 255, 0.05)" }}
-      mb={{base: 40, sm: 60}}
+      sx={{ borderBottom: 0, backgroundColor: "#202123" }}
+      mb={{ base: 40, sm: 60 }}
+      fixed={true}
     >
-      <MobileDrawer opened={opened} close={close}>
-        burek
+      <MobileDrawer opened={opened} close={close} >
+        <Stack align="center" pt={50}>
+        {mobileItems}
+        <Button radius="xl" onClick={() => {scrollTo.signUp(); close();}}>
+            Get early access
+          </Button>
+        </Stack>
       </MobileDrawer>
       <Container className={classes.inner} fluid>
         <UnstyledButton component="a" href="/">
@@ -147,7 +201,9 @@ export function HeaderAction({ links, scrollTo }: {links: HeaderActionProps, scr
           {items}
         </Group>
         <Group>
-          <Button radius="xl" onClick={()=> scrollTo.signUp()}>Get early access</Button>
+          <Button radius="xl" onClick={() => scrollTo.signUp()}>
+            Get early access
+          </Button>
           <Burger
             opened={opened}
             onClick={toggle}

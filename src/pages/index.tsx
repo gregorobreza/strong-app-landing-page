@@ -3,6 +3,7 @@ import { DedicationSection } from "@/components/dataComponents/sections/dedicati
 import { FeatureSection } from "@/components/dataComponents/sections/featureSection";
 import { IntroSection } from "@/components/dataComponents/sections/introSection";
 import { SignUpSection } from "@/components/dataComponents/sections/signUpSection";
+import { HEADER_HEIGHT } from "@/components/layout/header";
 import { Layout } from "@/components/layout/layout";
 import { Box, Container, Flex, Stack } from "@mantine/core";
 import { useScrollIntoView } from "@mantine/hooks";
@@ -12,19 +13,19 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { scrollIntoView: scrollToIntro, targetRef: introRef } = useScrollIntoView<HTMLDivElement>({
-    offset: 60,
+    offset: 80,
   });
   const { scrollIntoView: scrollToDedication, targetRef: dedicationRef } = useScrollIntoView<HTMLDivElement>({
-    offset: 60,
+    offset: 80,
   });
   const { scrollIntoView:scrollToFeature , targetRef: featureRef} = useScrollIntoView<HTMLDivElement>({
-    offset: 60,
+    offset: 80,
   });
   const { scrollIntoView: scrollToCoach, targetRef: coachRef} = useScrollIntoView<HTMLDivElement>({
-    offset: 60,
+    offset: 80,
   });
   const { scrollIntoView: scrollToSignUp, targetRef: signUpRef} = useScrollIntoView<HTMLDivElement>({
-    offset: 60,
+    offset: 80,
   });
   return (
     <>
@@ -34,9 +35,11 @@ export default function Home() {
           sx={(theme) => ({
             paddingLeft: `calc(${theme.spacing.lg} * 4)`,
             paddingRight: `calc(${theme.spacing.lg} * 4)`,
+            paddingTop: `calc(${theme.spacing.lg} + ${HEADER_HEIGHT}px)`,
             maxWidth: 1920,
             [theme.fn.smallerThan("sm")]: {
               padding: theme.spacing.lg,
+              paddingTop: `calc(${theme.spacing.lg} + ${HEADER_HEIGHT}px)`,
             },
           })}
         >

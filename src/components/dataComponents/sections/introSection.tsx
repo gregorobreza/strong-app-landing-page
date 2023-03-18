@@ -52,8 +52,8 @@ export function IntroSection({scrollTo}: {scrollTo: Record<"dedication" | "signU
       <MediaQuery largerThan="md" styles={{ display: "none" }}>
         <Grid.Col span={12} md={7}>
           <Group position="center" pt="xl">
-            <PrimaryButton>Get early access</PrimaryButton>
-            <SecondaryButton>Tell me more</SecondaryButton>
+            <PrimaryButton onClick={()=> scrollTo.signUp()}>Get early access</PrimaryButton>
+            <SecondaryButton onClick={()=> scrollTo.dedication()}>Tell me more</SecondaryButton>
           </Group>
         </Grid.Col>
       </MediaQuery>

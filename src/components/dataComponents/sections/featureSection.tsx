@@ -2,6 +2,7 @@ import {
   FeatureContainer,
   IFeatureBox,
 } from "@/components/styledComponents/features/featureContainer";
+import { SquatsIcon } from "@/components/styledComponents/icons/costumIcons";
 import {
   SectionBigTitle,
   SectionTitle,
@@ -11,6 +12,7 @@ import { ActionIcon, Button, Group, MediaQuery, Stack } from "@mantine/core";
 import {
   IconArrowNarrowLeft,
   IconArrowNarrowRight,
+  IconBarbell,
   IconChartLine,
   IconDental,
   IconDeviceDesktop,
@@ -48,7 +50,7 @@ const slides: IFeatureBox[] = [
     text: "Share workouts, videos and progress with your strength coach and achieve your goals and potential faster!",
   },
   {
-    Icon: IconDental,
+    Icon: IconBarbell,
     title: "Strength focus",
     text: "RPE/RIR, percentage, rep or interval based workouts we got you. Your job is to focus and keep getting stronger.",
   },

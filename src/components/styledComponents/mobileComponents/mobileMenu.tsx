@@ -12,7 +12,7 @@ export function MobileDrawer({
   children
 }: PropsWithChildren<MobileDrawerProps>): JSX.Element {
   return (
-    <Drawer  opened={opened} onClose={close} size={"100%"} title="menu" closeButtonProps={{iconSize: 50}}>
+    <Drawer  opened={opened} onClose={close} size={"100%"} title=" " closeButtonProps={{iconSize: 50}}>
       {children}
     </Drawer>
   );

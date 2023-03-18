@@ -11,13 +11,14 @@ export const LINKS: HeaderActionProps = {
       label: "Features",
     },
     {
-      setionName: "coach",
-      label: "For Coaches",
-    },
-    {
       setionName: "dedication",
       label: "For Athletes",
     },
+    {
+      setionName: "coach",
+      label: "For Coaches",
+    },
+
     // {
     //   link: "#1",
     //   label: "Learn",
