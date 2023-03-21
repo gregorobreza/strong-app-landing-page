@@ -15,14 +15,16 @@ const useStyles = createStyles((theme) => ({
     writingMode: "vertical-lr",
     whiteSpace: "pre-line",
     transform: "rotate(180deg)",
+    fontFamily: "Oswald, sans-serif",
+    // fontFamily: "Roboto Condensed, sans-serif",
     [theme.fn.smallerThan("md")]: {
       fontSize: 80,
     },
     [theme.fn.smallerThan("sm")]: {
-      fontSize: 60,
+      fontSize: 70,
     },
     [theme.fn.smallerThan("xs")]: {
-      fontSize: 40,
+      fontSize: 45,
     },
   },
   container: {},
