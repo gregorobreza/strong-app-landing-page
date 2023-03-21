@@ -43,15 +43,14 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function StrongFooter({ links }: StrongFooterProps) {
+export function StrongFooter({ links, scrollTo }: StrongFooterProps) {
   const { classes } = useStyles();
   const currentYear = dayjs().year();
   const items = links.map((link) => (
-    <Anchor<"a">
+    <Anchor<"button">
       key={link.label}
-      href={link.link}
       sx={(theme) => ({ lineHeight: 1, color: theme.colors.dark[0] })}
-      onClick={(event) => event.preventDefault()}
+      onClick={(event) => link.sectionName ? scrollTo[link.sectionName]() : event.preventDefault()}
       size="sm"
     >
       {link.label}

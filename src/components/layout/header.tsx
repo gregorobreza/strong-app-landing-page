@@ -188,7 +188,7 @@ export function HeaderAction({
       <MobileDrawer opened={opened} close={close} >
         <Stack align="center" pt={50}>
         {mobileItems}
-        <Button radius="xl" onClick={() => {scrollTo.signUp(); close();}}>
+        <Button size="md" radius="xl" onClick={() => {scrollTo.signUp(); close();}}>
             Get early access
           </Button>
         </Stack>

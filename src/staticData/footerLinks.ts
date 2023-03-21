@@ -1,21 +1,22 @@
+import { SectionName } from "@/components/layout/header";
+
 export interface StrongFooterProps {
-  links: { link: string; label: string }[];
+  links: { sectionName?: SectionName; label: string }[];
+  scrollTo: Record<SectionName, any>;
 }
 
-export const footerLinks = {
-  links: [
+export const footerLinks:{ sectionName?: SectionName; label: string }[]  = [
     {
-      link: "#",
+      sectionName: "dedication",
       label: "About",
     },
 
+    // {
+    //   sectionName: "#",
+    //   label: "Pricing",
+    // },
     {
-      link: "#",
-      label: "Pricing",
-    },
-    {
-      link: "#",
+      
       label: "Privacy & Policy",
     },
-  ],
-};
+  ]

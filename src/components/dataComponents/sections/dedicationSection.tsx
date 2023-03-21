@@ -22,11 +22,11 @@ export function DedicationSection(): JSX.Element {
         >
           <SectionTitle>
             ULTIMATE STRENGTH PLATFORM FOR STRENGTH{" "}
-            <Text span td="underline">
+            <Text span inherit td="underline">
               ATHLETES
             </Text>{" "}
             AND STRENGTH{" "}
-            <Text span td="underline">
+            <Text span inherit td="underline">
               COACHES
             </Text>
           </SectionTitle>

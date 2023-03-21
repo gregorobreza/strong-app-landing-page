@@ -18,7 +18,7 @@ export function Layout({ children,scrollTo,  ...props }: PropsWithChildren<Layou
         },
       }}
       header={<HeaderAction links={LINKS} scrollTo={scrollTo} />}
-      footer={<StrongFooter links={footerLinks.links} />}
+      footer={<StrongFooter links={footerLinks} scrollTo={scrollTo} />}
       fixed={false}
     >
       {children}
