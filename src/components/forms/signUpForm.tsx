@@ -5,6 +5,7 @@ import {
   Collapse,
   createStyles,
   Group,
+  LoadingOverlay,
   Modal,
   SegmentedControl,
   Stack,
@@ -13,6 +14,8 @@ import {
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { IconInfoCircle } from "@tabler/icons-react";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import {
   Field,
   FieldProps,
@@ -65,13 +68,27 @@ export function SignUpForm(): JSX.Element {
       .email("Please provide valid email"),
   });
 
+
+  const { isLoading, mutate:formSubmit } = useMutation({
+    mutationFn: async (form: { email: string }) => {
+      return axios.post("/api/0/sendSubmitionMail", {
+        email: form.email,
+        html: "<h1>hello</h1>",
+      });
+    },
+    onSuccess: (data) => console.log("success", data),
+    onError: (error) => console.log("error", error)
+  });
+
   return (
     <Box
       py={{ base: 20, sm: 50 }}
       px={{ base: 5, sm: 10 }}
       maw={500}
       sx={(theme) => ({ color: theme.colors.dark })}
+      // pos="relative"
     >
+      {/* <LoadingOverlay visible={isLoading} overlayBlur={2} /> */}
       <>
         <Modal
           opened={opened}
@@ -103,6 +120,7 @@ export function SignUpForm(): JSX.Element {
             formikHelpers: FormikHelpers<ISignUpForm>
           ) => {
             console.log(values);
+            formSubmit({email: values.email})
           }}
         >
           {(formikProps: FormikProps<ISignUpForm>) => (
@@ -155,15 +173,14 @@ export function SignUpForm(): JSX.Element {
                             form.setFieldValue(field.name, value)
                           }
                           multiple
-                          
                         >
                           <Group>
-                          <Chip size="md" value="athlete" color="steelteal.6">
-                            an Athlete
-                          </Chip>
-                          <Chip size="md" value="coach" color="steelteal.6">
-                            a Coach
-                          </Chip>
+                            <Chip size="md" value="athlete" color="steelteal.6">
+                              an Athlete
+                            </Chip>
+                            <Chip size="md" value="coach" color="steelteal.6">
+                              a Coach
+                            </Chip>
                           </Group>
                         </Chip.Group>
                       </Stack>

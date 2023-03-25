@@ -35,7 +35,7 @@ export default function Home() {
           sx={(theme) => ({
             paddingLeft: `calc(${theme.spacing.lg} * 4)`,
             paddingRight: `calc(${theme.spacing.lg} * 4)`,
-            paddingTop: `calc(${theme.spacing.lg} + ${HEADER_HEIGHT}px)`,
+            paddingTop: `calc(${theme.spacing.lg} * 4 + ${HEADER_HEIGHT}px)`,
             maxWidth: 1920,
             [theme.fn.smallerThan("sm")]: {
               padding: theme.spacing.lg,

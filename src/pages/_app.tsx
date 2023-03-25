@@ -3,9 +3,11 @@ import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 import { defaultThemeOverride } from "@/projectConfigurations/themeConfig";
 import { CustomFonts } from "@/projectConfigurations/global";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
+  const queryClient = new QueryClient();
 
   return (
     <>
@@ -18,18 +20,19 @@ export default function App(props: AppProps) {
         <link rel="icon" type="image/svg+xml" href="/strongman.svg" />
         <link rel="icon" type="image/x-icon" href="/strongman.ico" />
       </Head>
-
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          /** Put your mantine theme override here */
-          ...defaultThemeOverride,
-        }}
-      >
-        <CustomFonts/>
-        <Component {...pageProps} />
-      </MantineProvider>
+      <QueryClientProvider client={queryClient}>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{
+            /** Put your mantine theme override here */
+            ...defaultThemeOverride,
+          }}
+        >
+          <CustomFonts />
+          <Component {...pageProps} />
+        </MantineProvider>
+      </QueryClientProvider>
     </>
   );
 }
