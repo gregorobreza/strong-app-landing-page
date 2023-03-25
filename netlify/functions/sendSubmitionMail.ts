@@ -1,31 +1,28 @@
-import {
-  Handler, HandlerContext,
-  HandlerEvent
-} from "@netlify/functions";
-import nodemailer from "nodemailer";
-
+import { ISignUpForm } from "@/components/forms/signUpForm";
+import { mailTransporter } from "@/utils/mail";
+import { signUpHtml } from "@/utils/renderUtils";
+import { Handler, HandlerContext, HandlerEvent } from "@netlify/functions";
 
 const handler: Handler = async (
   event: HandlerEvent,
   context: HandlerContext
 ) => {
-  let data = JSON.parse(event.body || "");
+  let data:{formValues:ISignUpForm, html: string} = JSON.parse(event.body || "");
 
-  let transporter = nodemailer.createTransport({
-    host: process.env.SMTP_SERVER || "",
-    port: parseInt(process.env.SMTP_SERVER_PORT || "0"),
-    auth: {
-      user: process.env.SMTP_SERVER_USERNAME || "",
-      pass: process.env.SMTP_SERVER_PASSWORD || "",
-    },
-  });
-  const result = await transporter.sendMail({
-    from: process.env.SMTP_SERVER_EMAIL_ADDRESS,
-    to: data.email,
-    subject: `Why are you gay?`,
+
+  const costumer = await mailTransporter.sendMail({
+    from: `Barbell Logbook <${process.env.SMTP_SERVER_EMAIL_ADDRESS}>`,
+    to: data.formValues.email,
+    subject: `Succesfully signed up!`,
     html: data.html,
   });
 
+  mailTransporter.sendMail({
+    from: process.env.SMTP_SERVER_EMAIL_ADDRESS,
+    to: "signups@barbelllogbook.com",
+    subject: `Another sign up!`,
+    html: `<div>${data.formValues.email} just signed up!</div>`,
+  });
 
   return {
     statusCode: 200,

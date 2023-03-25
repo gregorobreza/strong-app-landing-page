@@ -9,54 +9,45 @@ import { Section } from "@react-email/section";
 import { Text } from "@react-email/text";
 import * as React from "react";
 
-interface SignUpProps {
+export interface SignUpProps {
   email: string;
   linkUrl: string;
   imageUrl: string;
-  secondImg: string;
 }
 
 export default function SignUpEmail({
   email,
   linkUrl,
   imageUrl,
-  secondImg,
 }: SignUpProps) {
   return (
     <Html>
       <Head />
-      <Preview>Someone said you are gay.</Preview>
+      <Preview>Wellcome warrior!</Preview>
       <Section style={main}>
         <Container style={container}>
           <Img
             src={imageUrl}
             width="140"
             height="140"
-            alt="StrongApp"
+            alt="BarbellLogbook"
             style={logo}
           />
           <Text style={paragraph}>Hi {email},</Text>
-          <Text style={paragraph}>Why are you gay?</Text>
-          <Img
-            src={secondImg}
-            width="320"
-            height="198"
-            alt="gay"
-            style={gaycontainer}
-          />
+          <Text style={paragraph}>You succesfully submited form</Text>
 
           <Section style={btnContainer}>
             <Button pX={12} pY={12} style={button} href={linkUrl}>
-              Check who says I am gay?
+              Check when we will?
             </Button>
           </Section>
           <Text style={paragraph}>
             Best,
             <br />
-            It is OK to be gay
+            get stronger
           </Text>
           <Hr style={hr} />
-          <Text style={footer}>Gay Right activist</Text>
+          <Text style={footer}>Barbell Logbook</Text>
         </Container>
       </Section>
     </Html>
@@ -67,18 +58,16 @@ const fontFamily =
   '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif';
 
 const main = {
-  backgroundColor: "#141517",
+  backgroundColor: "transparent",
 };
 
 const container = {
   margin: "0 auto",
   //   padding: "20px 0 48px",
   padding: "45px",
+  backgroundColor: "#141517",
 };
 
-const gaycontainer = {
-  margin: "20px auto 20px auto",
-};
 
 const logo = {
   margin: "0 auto",
@@ -119,9 +108,4 @@ const footer = {
   fontSize: "12px",
 };
 
-const flag = {
-  width: "150px",
-  aspectRatio: "70 / 45",
-  background:
-    "linear-gradient(hotpink 12.5%, red 0 25%, orange 0 37.5%, yellow 0 50%, green 0 62.5%, darkturquoise 0 75%, blue 0 87.5%, indigo 0)",
-};
+

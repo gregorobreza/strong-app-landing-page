@@ -1,3 +1,4 @@
+import { signUpHtml } from "@/utils/renderUtils";
 import {
   Box,
   Checkbox,
@@ -13,9 +14,11 @@ import {
   TextInput,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import { render } from "@react-email/render";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import SignUpEmail from "emails/signUpTemplate";
 import {
   Field,
   FieldProps,
@@ -32,7 +35,7 @@ import {
   SectionTitle,
 } from "../styledComponents/typography/sectionTypography";
 
-interface ISignUpForm {
+export interface ISignUpForm {
   email: string;
   interestedAs: string[];
   athleteLevel: string;
@@ -53,6 +56,7 @@ export function SignUpForm(): JSX.Element {
   const { classes } = useStyles();
   const mediumScreen = useMediaQuery("(max-width: 500px)");
   const [opened, setOpened] = useState(false);
+  const [submited, setSubmited] = useState(false);
 
   const initialValues: ISignUpForm = {
     email: "",
@@ -62,22 +66,28 @@ export function SignUpForm(): JSX.Element {
     surveys: true,
   };
 
+
+
   const validatorSchema = object().shape({
     email: string()
       .required("Email is required")
       .email("Please provide valid email"),
   });
 
-
-  const { isLoading, mutate:formSubmit } = useMutation({
-    mutationFn: async (form: { email: string }) => {
+  const { isLoading, mutate: formSubmit } = useMutation({
+    mutationFn: async ({formValues, html}:{formValues:ISignUpForm, html: string}) => {
       return axios.post("/api/0/sendSubmitionMail", {
-        email: form.email,
-        html: "<h1>hello</h1>",
+        formValues: formValues,
+        html: html
       });
     },
-    onSuccess: (data) => console.log("success", data),
-    onError: (error) => console.log("error", error)
+    onSuccess: (data) => {
+      setSubmited(true);
+      setTimeout(() => {
+        setSubmited(false);
+      }, 6000);
+    },
+    onError: (error) => console.log("error", error),
   });
 
   return (
@@ -120,7 +130,7 @@ export function SignUpForm(): JSX.Element {
             formikHelpers: FormikHelpers<ISignUpForm>
           ) => {
             console.log(values);
-            formSubmit({email: values.email})
+            formSubmit({formValues: values, html: signUpHtml(values.email)});
           }}
         >
           {(formikProps: FormikProps<ISignUpForm>) => (
@@ -306,6 +316,31 @@ export function SignUpForm(): JSX.Element {
                 >
                   Submit
                 </PrimaryButton>
+
+                <Collapse in={submited}>
+                  <Box
+                    sx={(theme) => ({
+                      border: `3px solid ${theme.colors.steelteal[6]}`,
+                      borderRadius: theme.radius.xl,
+                      padding: 7,
+                      backgroundColor: theme.colors.steelteal[6],
+                      color: theme.white,
+                    })}
+                  >
+                    <Text align="center">
+                      💪You succesfully submited form!{" "}
+                      <Text
+                        sx={{
+                          transform: "scale(-1, 1)",
+                          display: "inline-block",
+                        }}
+                        span
+                      >
+                        💪
+                      </Text>
+                    </Text>
+                  </Box>
+                </Collapse>
               </Stack>
             </Form>
           )}
