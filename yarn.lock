@@ -1779,6 +1779,11 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/google-spreadsheet@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@types/google-spreadsheet/-/google-spreadsheet-3.3.1.tgz#582d02155967d01a47b49887fa2f484fb14f10b5"
+  integrity sha512-nvwAEr+uKK/IQ0hfH3agtRX2RnKI5+D/pUnDpJ/+D8nSbrvvV+fgyA8lGjoAHIHcls19NTzkQBm1T7vbF5iy8A==
+
 "@types/got@^9":
   version "9.6.12"
   resolved "https://registry.yarnpkg.com/@types/got/-/got-9.6.12.tgz#fd42a6e1f5f64cd6bb422279b08c30bb5a15a56f"

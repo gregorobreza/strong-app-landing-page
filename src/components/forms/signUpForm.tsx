@@ -57,6 +57,7 @@ export function SignUpForm(): JSX.Element {
   const mediumScreen = useMediaQuery("(max-width: 500px)");
   const [opened, setOpened] = useState(false);
   const [submited, setSubmited] = useState(false);
+  const [error, setError] = useState(false);
 
   const initialValues: ISignUpForm = {
     email: "",
@@ -66,8 +67,6 @@ export function SignUpForm(): JSX.Element {
     surveys: true,
   };
 
-
-
   const validatorSchema = object().shape({
     email: string()
       .required("Email is required")
@@ -75,10 +74,16 @@ export function SignUpForm(): JSX.Element {
   });
 
   const { isLoading, mutate: formSubmit } = useMutation({
-    mutationFn: async ({formValues, html}:{formValues:ISignUpForm, html: string}) => {
+    mutationFn: async ({
+      formValues,
+      html,
+    }: {
+      formValues: ISignUpForm;
+      html: string;
+    }) => {
       return axios.post("/api/0/sendSubmitionMail", {
         formValues: formValues,
-        html: html
+        html: html,
       });
     },
     onSuccess: (data) => {
@@ -87,7 +92,13 @@ export function SignUpForm(): JSX.Element {
         setSubmited(false);
       }, 6000);
     },
-    onError: (error) => console.log("error", error),
+    onError: (error) => {
+      console.error(error);
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 6000);
+    },
   });
 
   return (
@@ -129,8 +140,8 @@ export function SignUpForm(): JSX.Element {
             values: ISignUpForm,
             formikHelpers: FormikHelpers<ISignUpForm>
           ) => {
-            console.log(values);
-            formSubmit({formValues: values, html: signUpHtml(values.email)});
+            // console.log(values);
+            formSubmit({ formValues: values, html: signUpHtml(values.email) });
           }}
         >
           {(formikProps: FormikProps<ISignUpForm>) => (
@@ -338,6 +349,22 @@ export function SignUpForm(): JSX.Element {
                       >
                         💪
                       </Text>
+                    </Text>
+                  </Box>
+                </Collapse>
+                <Collapse in={error}>
+                  <Box
+                    sx={(theme) => ({
+                      border: `3px solid ${theme.colors.red[8]}`,
+                      borderRadius: theme.radius.xl,
+                      padding: 7,
+                      backgroundColor: theme.colors.red[8],
+                      color: theme.white,
+                    })}
+                  >
+                    <Text align="center">
+                      Uh-oh, looks like a technical glitch. Please try again
+                      later. ⚠️
                     </Text>
                   </Box>
                 </Collapse>

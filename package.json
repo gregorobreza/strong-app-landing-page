@@ -55,6 +55,7 @@
     "@react-email/render": "0.0.6",
     "@react-email/section": "0.0.7-canary.1",
     "@react-email/text": "0.0.4",
+    "@types/google-spreadsheet": "^3.3.1",
     "@types/nodemailer": "^6.4.7",
     "react-email": "1.7.10"
   }
