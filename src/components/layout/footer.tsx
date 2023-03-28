@@ -62,7 +62,7 @@ export function StrongFooter({ links, scrollTo }: StrongFooterProps) {
       <div className={classes.inner}>
 
         <Text  size="sm">
-          © {currentYear} Strong App - All rights reserved.
+          © {currentYear} Barbell Logbook - All rights reserved.
         </Text>
 
         <Group spacing="xs" position="right" noWrap className={classes.links}> 

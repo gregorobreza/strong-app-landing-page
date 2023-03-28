@@ -195,7 +195,7 @@ export function HeaderAction({
       </MobileDrawer>
       <Container className={classes.inner} fluid>
         <UnstyledButton component="a" href="/">
-          <Image src="/strongman.svg" alt="Strong app logo" width={50} />
+          <Image src="/strongman.svg" alt="Barbell logbook logo" width={50} />
         </UnstyledButton>
         <Group spacing={5} className={classes.links}>
           {items}

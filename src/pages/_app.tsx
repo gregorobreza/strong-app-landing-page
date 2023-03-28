@@ -12,7 +12,7 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <title>Strong app | Revolutionize managing strength training</title>
+        <title>Barbell Logbook | Revolutionize managing strength training</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
