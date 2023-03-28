@@ -50,7 +50,7 @@ export function SectionTitle({ children, ...props }: TitleProps): JSX.Element {
 export function SectionText({ children, ...props }: TextProps): JSX.Element {
   const { classes } = useStyles();
   return (
-    <Text fw={700} {...props} className={classes.text}>
+    <Text fw={500} {...props} className={classes.text}>
       {children}
     </Text>
   );
@@ -63,7 +63,7 @@ export function SectionTextContainer({
   const { classes } = useStyles();
   return (
     <Container p="xl" fluid sx={(theme) => ({backgroundColor: theme.fn.rgba("#ffffff", 0.05), borderRadius: theme.radius.lg})}>
-      <Text fw={700} {...props} className={classes.text}>
+      <Text fw={500} {...props} className={classes.text}>
         {children}
       </Text>
     </Container>

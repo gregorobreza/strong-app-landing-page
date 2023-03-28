@@ -1,24 +1,24 @@
 import { signUpHtml } from "@/utils/renderUtils";
 import {
+  Anchor,
   Box,
   Checkbox,
   Chip,
   Collapse,
   createStyles,
   Group,
-  LoadingOverlay,
   Modal,
   SegmentedControl,
   Stack,
   Text,
   TextInput,
+  Title,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { render } from "@react-email/render";
+import { modals } from "@mantine/modals";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import SignUpEmail from "emails/signUpTemplate";
 import {
   Field,
   FieldProps,
@@ -29,6 +29,7 @@ import {
 } from "formik";
 import { useState } from "react";
 import { object, string } from "yup";
+import { TermsAndConditions } from "../dataComponents/formal/termsAndConditions";
 import { PrimaryButton } from "../styledComponents/buttons/mainButtons";
 import {
   SectionText,
@@ -320,6 +321,28 @@ export function SignUpForm(): JSX.Element {
                     }}
                   </Field>
                 </Box>
+                <Text>
+                  By submitting this form I agree with{" "}
+                  <Anchor
+                  color="red.7"
+                    component="button"
+                    onClick={() =>
+                      modals.open({
+                        title: <Title order={2}>Terms & Conditions</Title>,
+                        children: (
+                          <>
+                            <TermsAndConditions />
+                          </>
+                        ),
+                        radius: "xl",
+                        size: 800,
+                      })
+                    }
+                  >
+                    Terms & Conditions
+                  </Anchor>
+                  .
+                </Text>
 
                 <PrimaryButton
                   onClick={() => formikProps.submitForm()}

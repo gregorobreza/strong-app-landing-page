@@ -4,6 +4,7 @@ import { MantineProvider } from "@mantine/core";
 import { defaultThemeOverride } from "@/projectConfigurations/themeConfig";
 import { CustomFonts } from "@/projectConfigurations/global";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ModalsProvider } from "@mantine/modals";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -12,7 +13,9 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <title>Barbell Logbook | Revolutionize managing strength training</title>
+        <title>
+          Barbell Logbook | Revolutionize managing strength training
+        </title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -29,8 +32,11 @@ export default function App(props: AppProps) {
             ...defaultThemeOverride,
           }}
         >
-          <CustomFonts />
-          <Component {...pageProps} />
+          {" "}
+          <ModalsProvider>
+            <CustomFonts />
+            <Component {...pageProps} />
+          </ModalsProvider>
         </MantineProvider>
       </QueryClientProvider>
     </>

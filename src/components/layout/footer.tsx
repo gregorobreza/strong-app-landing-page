@@ -50,7 +50,7 @@ export function StrongFooter({ links, scrollTo }: StrongFooterProps) {
     <Anchor<"button">
       key={link.label}
       sx={(theme) => ({ lineHeight: 1, color: theme.colors.dark[0] })}
-      onClick={(event) => link.sectionName ? scrollTo[link.sectionName]() : event.preventDefault()}
+      onClick={(event) => link.sectionName ? scrollTo[link.sectionName]() : link.onClick ? link.onClick() : event.preventDefault()}
       size="sm"
     >
       {link.label}
