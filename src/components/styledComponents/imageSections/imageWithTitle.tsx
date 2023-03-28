@@ -1,4 +1,6 @@
-import { createStyles, Flex, Group, Image, Text } from "@mantine/core";
+
+import { createStyles, Flex, Image, Text } from "@mantine/core";
+import { motion, Variants } from "framer-motion";
 
 interface ImgWTtitleProps {
   imgSrc: string;
@@ -6,12 +8,29 @@ interface ImgWTtitleProps {
   title: string;
 }
 
+export const cardVariants: Variants = {
+  offscreen: {
+    x: 300,
+    scale: 0.5
+  },
+  onscreen: {
+    x: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      bounce: 0.2,
+      duration: 0.7,
+      delay: 0.7
+    }
+  }
+};
+
 const useStyles = createStyles((theme) => ({
   title: {
     fontWeight: 700,
     fontSize: 110,
     color: theme.fn.rgba(theme.colors.dark[0], 0.08),
-    lineHeight:1.2,
+    lineHeight: 1.2,
     writingMode: "vertical-lr",
     whiteSpace: "pre-line",
     transform: "rotate(180deg)",
@@ -45,10 +64,19 @@ export function ImageAndTitle({
       wrap="nowrap"
       className={classes.container}
     >
-      <Text className={classes.title} tt="uppercase">
-        {title}
-      </Text>
-      <div style={{minWidth: 180}}>
+      <motion.div
+        className="card-container"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.8 }}
+      >
+        <motion.div className="card" variants={cardVariants}>
+        <Text className={classes.title} tt="uppercase">
+          {title}
+        </Text>
+        </motion.div>
+      </motion.div>
+      <div style={{ minWidth: 180 }}>
         <Image
           src={imgSrc}
           alt={imgAlt}

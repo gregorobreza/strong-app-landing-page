@@ -1,20 +1,23 @@
-import { Title, Text } from "@mantine/core";
+import { PrimaryButton } from "@/components/styledComponents/buttons/mainButtons";
+import { Title, Text, Stack } from "@mantine/core";
+import { modals } from "@mantine/modals";
 
 export function TermsAndConditions(): JSX.Element {
   return (
-    <>
+    <Stack>
       <Text>
-        By providing your email address and clicking the &quot;Submit&quot; button, you
-        agree to receive marketing emails and newsletters from Barbell Logbook. Here are the terms and conditions that govern your use of our
-        email sign-up form:
+        By providing your email address and clicking the &quot;Submit&quot;
+        button, you agree to receive marketing emails and newsletters from
+        Barbell Logbook. Here are the terms and conditions that govern your use
+        of our email sign-up form:
       </Text>
       <Title order={3}>Email Subscription</Title>
       <Text>
         By submitting your email address, you agree to receive promotional
-        emails and newsletters from Barbell Logbook. We will send you
-        updates about our products, services, and promotions. You may
-        unsubscribe from our emails at any time by clicking the &quot;Unsubscribe&quot;
-        link at the bottom of our emails.
+        emails and newsletters from Barbell Logbook. We will send you updates
+        about our products, services, and promotions. You may unsubscribe from
+        our emails at any time by clicking the &quot;Unsubscribe&quot; link at
+        the bottom of our emails.
       </Text>
 
       <Title order={3}> Personal Information</Title>
@@ -28,16 +31,16 @@ export function TermsAndConditions(): JSX.Element {
       <Title order={3}>Intellectual Property</Title>
       <Text>
         All content in our marketing emails and newsletters, including text,
-        images, videos, and graphics, is owned by Barbell Logbook and
-        protected by intellectual property laws. You may not copy, distribute,
-        or use our content without our prior written consent.
+        images, videos, and graphics, is owned by Barbell Logbook and protected
+        by intellectual property laws. You may not copy, distribute, or use our
+        content without our prior written consent.
       </Text>
       <Title order={3}>Disclaimer</Title>
       <Text>
-        Our marketing emails and newsletters are provided &quot;as is&quot; without any
-        warranties or guarantees. We make no representations or warranties about
-        the accuracy, completeness, or reliability of the information contained
-        in our emails.
+        Our marketing emails and newsletters are provided &quot;as is&quot;
+        without any warranties or guarantees. We make no representations or
+        warranties about the accuracy, completeness, or reliability of the
+        information contained in our emails.
       </Text>
 
       <Title order={3}>Limitation of Liability</Title>
@@ -49,9 +52,8 @@ export function TermsAndConditions(): JSX.Element {
       <Title order={3}>Governing Law</Title>
       <Text>
         These terms and conditions shall be governed by and construed in
-        accordance with the laws of EU. Any disputes arising
-        from or related to these terms and conditions shall be resolved in the
-        courts.
+        accordance with the laws of EU. Any disputes arising from or related to
+        these terms and conditions shall be resolved in the courts.
       </Text>
       <Title order={3}>Changes to Terms and Conditions</Title>
       <Text>
@@ -60,10 +62,13 @@ export function TermsAndConditions(): JSX.Element {
         updated terms and conditions.
       </Text>
       <Text>
-        By providing your email address and clicking the &quot;Submit&quot; button, you
-        acknowledge that you have read and understood these terms and conditions
-        and agree to be bound by them.
+        By providing your email address and clicking the &quot;Submit&quot;
+        button, you acknowledge that you have read and understood these terms
+        and conditions and agree to be bound by them.
       </Text>
-    </>
+      <PrimaryButton size="md" onClick={() => modals.closeAll()}>
+        Close
+      </PrimaryButton>
+    </Stack>
   );
 }

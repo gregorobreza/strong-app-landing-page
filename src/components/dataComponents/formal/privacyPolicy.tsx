@@ -1,8 +1,10 @@
-import { Title, Text } from "@mantine/core";
+import { PrimaryButton } from "@/components/styledComponents/buttons/mainButtons";
+import { Title, Text, Stack } from "@mantine/core";
+import { modals } from "@mantine/modals";
 
 export function PrivacyPolicy(): JSX.Element {
   return (
-    <>
+    <Stack>
       <Text>
         This privacy policy applies to the use of the landing page owned and
         operated by Barbell Logbook. This policy sets out how we collect,
@@ -78,6 +80,9 @@ export function PrivacyPolicy(): JSX.Element {
         and agree to the collection, use, and sharing of your information as
         described herein.
       </Text>
-    </>
+      <PrimaryButton size="md" onClick={() => modals.closeAll()}>
+              Close
+            </PrimaryButton>
+    </Stack>
   );
 }
