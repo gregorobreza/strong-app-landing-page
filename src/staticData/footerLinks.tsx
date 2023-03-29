@@ -22,9 +22,9 @@ export const footerLinks:{ sectionName?: SectionName; label: string; onClick?: F
     {
       label: "Privacy & Policy",
       onClick: () => modals.open({
-        title: <Title order={2}>Privacy & Policy</Title>,
+        title: "Privacy & Policy",
         children: (<><PrivacyPolicy/></>),
-        radius: "xl",
+        radius: "md",
         size: 800
       })
     },

@@ -117,7 +117,7 @@ export function SignUpForm(): JSX.Element {
           onClose={() => setOpened(false)}
           title={<Text fw={700}>Optional survey program</Text>}
           centered
-          radius="xl"
+          radius="md"
         >
           <Stack spacing="lg">
             <SectionText>
@@ -328,13 +328,13 @@ export function SignUpForm(): JSX.Element {
                     component="button"
                     onClick={() =>
                       modals.open({
-                        title: <Title order={2}>Terms & Conditions</Title>,
+                        title: "Terms & Conditions",
                         children: (
                           <>
                             <TermsAndConditions />
                           </>
                         ),
-                        radius: "xl",
+                        radius: "md",
                         size: 800,
                       })
                     }

@@ -11,11 +11,13 @@ interface ImgWTtitleProps {
 export const cardVariants: Variants = {
   offscreen: {
     x: 300,
-    scale: 0.5
+    scale: 0.5,
+    opacity:0
   },
   onscreen: {
     x: 0,
     scale: 1,
+    opacity:1,
     transition: {
       type: "spring",
       bounce: 0.2,
@@ -25,25 +27,29 @@ export const cardVariants: Variants = {
   }
 };
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles((theme, numOfWords:number) => ({
   title: {
     fontWeight: 700,
     fontSize: 110,
-    color: theme.fn.rgba(theme.colors.dark[0], 0.08),
+    width: 110 * 1.2 * numOfWords,
     lineHeight: 1.2,
+    color: theme.fn.rgba(theme.colors.dark[0], 0.08),
     writingMode: "vertical-lr",
     whiteSpace: "pre-line",
     transform: "rotate(180deg)",
     fontFamily: "Oswald, sans-serif",
-    // fontFamily: "Roboto Condensed, sans-serif",
+    position: "relative",
     [theme.fn.smallerThan("md")]: {
       fontSize: 80,
+      width: 80 * 1.2 * numOfWords,
     },
     [theme.fn.smallerThan("sm")]: {
       fontSize: 70,
+      width: 70 * 1.2* numOfWords,
     },
     [theme.fn.smallerThan("xs")]: {
       fontSize: 45,
+      width: 45 * 1.2* numOfWords,
     },
   },
   container: {},
@@ -54,12 +60,12 @@ export function ImageAndTitle({
   imgAlt,
   title,
 }: ImgWTtitleProps): JSX.Element {
-  const { classes } = useStyles();
+  const { classes } = useStyles(title.split("\n").length);
   return (
     <Flex
       gap={0}
       justify="center"
-      align="center"
+      align="flex-end"
       direction="row"
       wrap="nowrap"
       className={classes.container}
@@ -70,7 +76,7 @@ export function ImageAndTitle({
         whileInView="onscreen"
         viewport={{ once: true, amount: 0.8 }}
       >
-        <motion.div className="card" variants={cardVariants}>
+        <motion.div  variants={cardVariants} >
         <Text className={classes.title} tt="uppercase">
           {title}
         </Text>

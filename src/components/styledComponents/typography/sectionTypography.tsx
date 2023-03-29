@@ -46,7 +46,6 @@ export const bigTitleVariants: Variants = {
   },
   onscreen: {
     y: 0,
-    scale: 1,
     opacity: 1,
     transition: {
       type: "spring",
