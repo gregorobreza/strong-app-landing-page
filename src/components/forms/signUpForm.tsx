@@ -79,7 +79,10 @@ export function SignUpForm(): JSX.Element {
         return;
       }
   
-      const token = await executeRecaptcha('yourAction');
+      const token = await executeRecaptcha('submitSignUpForm');
+      const neki = await axios.post("/api/0/sendSubmitionMail", {
+        response: token,
+      });
       console.log(token)
       // Do whatever you want with the token
     }, [executeRecaptcha]);
