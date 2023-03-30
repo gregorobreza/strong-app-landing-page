@@ -6,6 +6,7 @@ import { CustomFonts } from "@/projectConfigurations/global";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ModalsProvider } from "@mantine/modals";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import '../styles/globals.css'
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;

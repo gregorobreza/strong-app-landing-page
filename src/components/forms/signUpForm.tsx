@@ -125,7 +125,7 @@ export function SignUpForm(): JSX.Element {
       }, 6000);
     },
   });
-  const { isLoading:reIsLoading, mutateAsync: reCaptcha, } = useMutation({
+  const { isLoading: reIsLoading, mutateAsync: reCaptcha } = useMutation({
     mutationFn: async ({ token }: { token: string }) => {
       return await axios.post("/api/0/verifyRecaptcha", {
         response: token,
@@ -180,11 +180,17 @@ export function SignUpForm(): JSX.Element {
             formikHelpers: FormikHelpers<ISignUpForm>
           ) => {
             // console.log(values);
-            const token = await handleReCaptchaVerify()
-            const checkValidity = await reCaptcha({token:token || ""})
-            console.log("check validity", checkValidity.data.redata)
-            if(checkValidity.data.redata.success && checkValidity.data.redata.score > 0.4){
-              formSubmit({ formValues: values, html: signUpHtml(values.email) });
+            const token = await handleReCaptchaVerify();
+            const checkValidity = await reCaptcha({ token: token || "" });
+            console.log("check validity", checkValidity.data.redata);
+            if (
+              checkValidity.data.redata.success &&
+              checkValidity.data.redata.score > 0.4
+            ) {
+              formSubmit({
+                formValues: values,
+                html: signUpHtml(values.email),
+              });
             }
           }}
         >
@@ -364,8 +370,11 @@ export function SignUpForm(): JSX.Element {
                     }}
                   </Field>
                 </Box>
-                <Text>
-                  By submitting this form I agree with{" "}
+               
+
+                <Stack spacing={5}>
+                <Text size={12} >
+                  By submitting this form you agree with{" "}
                   <Anchor
                     color="red.7"
                     component="button"
@@ -386,15 +395,35 @@ export function SignUpForm(): JSX.Element {
                   </Anchor>
                   .
                 </Text>
+                <Text size={12} >
+                    This site is protected by reCAPTCHA and the Google{" "}
+                    <Anchor
+                      color="red.7"
+                      href="https://policies.google.com/privacy"
+                      target="_blank"
+                    >
+                      Privacy Policy
+                    </Anchor>{" "}
+                    and{" "}
+                    <Anchor
+                      color="red.7"
+                      href="https://policies.google.com/terms"
+                      target="_blank"
 
-                <PrimaryButton
-                  onClick={() => formikProps.submitForm()}
-                  size="md"
-                  isLoading={isLoading || reIsLoading}
-                >
-                  Submit
-                </PrimaryButton>
-
+                    >
+                      Terms of Service
+                    </Anchor>{" "}
+                    apply.
+                  </Text>
+                  <PrimaryButton
+                    onClick={() => formikProps.submitForm()}
+                    size="md"
+                    isLoading={isLoading || reIsLoading}
+                  >
+                    Submit
+                  </PrimaryButton>
+                 
+                </Stack>
                 <Collapse in={submited}>
                   <Box
                     sx={(theme) => ({
