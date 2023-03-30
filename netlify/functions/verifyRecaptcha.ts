@@ -1,6 +1,3 @@
-import { ISignUpForm } from "@/components/forms/signUpForm";
-import { addSignUpToSpreadSheets } from "@/utils/googleSheets";
-import { mailTransporter } from "@/utils/mail";
 import { Handler, HandlerContext, HandlerEvent } from "@netlify/functions";
 import axios from "axios";
 
@@ -10,11 +7,12 @@ const handler: Handler = async (
 ) => {
  
   const data: {response:string} = JSON.parse(event.body || "")
+  const secret = process.env.GOOGLE_RECAPTCHA_SECRET_KEY
 
   let response
   try {
     response = await axios.post('https://www.google.com/recaptcha/api/siteverify', {
-      secret: process.env.GOOGLE_RECAPTCHA_SECRET_KEY,
+      secret: secret,
       response: data.response
     }, {
       headers: {

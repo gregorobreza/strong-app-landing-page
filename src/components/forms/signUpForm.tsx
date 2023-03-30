@@ -12,8 +12,7 @@ import {
   SegmentedControl,
   Stack,
   Text,
-  TextInput,
-  Title,
+  TextInput
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { modals } from "@mantine/modals";
@@ -26,7 +25,7 @@ import {
   Form,
   Formik,
   FormikHelpers,
-  FormikProps,
+  FormikProps
 } from "formik";
 import { useCallback, useEffect, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
@@ -35,7 +34,7 @@ import { TermsAndConditions } from "../dataComponents/formal/termsAndConditions"
 import { PrimaryButton } from "../styledComponents/buttons/mainButtons";
 import {
   SectionText,
-  SectionTitle,
+  SectionTitle
 } from "../styledComponents/typography/sectionTypography";
 
 export interface ISignUpForm {
@@ -76,14 +75,16 @@ export function SignUpForm(): JSX.Element {
     const handleReCaptchaVerify = useCallback(async () => {
       if (!executeRecaptcha) {
         console.log('Execute recaptcha not yet available');
+        
         return;
       }
   
       const token = await executeRecaptcha('submitSignUpForm');
-      const neki = await axios.post("/api/0/sendSubmitionMail", {
-        response: token,
-      });
       console.log(token)
+      const neki = await axios.post("/api/0/verifyRecaptcha", {
+        response: token
+      });
+      console.log(neki)
       // Do whatever you want with the token
     }, [executeRecaptcha]);
   
