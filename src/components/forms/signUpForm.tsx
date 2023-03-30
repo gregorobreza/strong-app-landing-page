@@ -8,6 +8,7 @@ import {
   Collapse,
   createStyles,
   Group,
+  LoadingOverlay,
   Modal,
   SegmentedControl,
   Stack,
@@ -124,7 +125,7 @@ export function SignUpForm(): JSX.Element {
       }, 6000);
     },
   });
-  const { mutateAsync: reCaptcha, } = useMutation({
+  const { isLoading:reIsLoading, mutateAsync: reCaptcha, } = useMutation({
     mutationFn: async ({ token }: { token: string }) => {
       return await axios.post("/api/0/verifyRecaptcha", {
         response: token,
@@ -147,7 +148,7 @@ export function SignUpForm(): JSX.Element {
       sx={(theme) => ({ color: theme.colors.dark })}
       // pos="relative"
     >
-      {/* <LoadingOverlay visible={isLoading} overlayBlur={2} /> */}
+      <LoadingOverlay visible={isLoading || reIsLoading} overlayBlur={2} />
       <>
         <Modal
           opened={opened}
@@ -182,7 +183,9 @@ export function SignUpForm(): JSX.Element {
             const token = await handleReCaptchaVerify()
             const checkValidity = await reCaptcha({token:token || ""})
             console.log("check validity", checkValidity.data.redata)
-            formSubmit({ formValues: values, html: signUpHtml(values.email) });
+            if(checkValidity.data.redata.success && checkValidity.data.redata.score > 0.4){
+              formSubmit({ formValues: values, html: signUpHtml(values.email) });
+            }
           }}
         >
           {(formikProps: FormikProps<ISignUpForm>) => (
