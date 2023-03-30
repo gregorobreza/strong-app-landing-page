@@ -12,13 +12,14 @@ const handler: Handler = async (
   let response
   try {
     response = await axios.post('https://www.google.com/recaptcha/api/siteverify', {
+      response: data.response,
       secret: secret,
-      response: data.response
     }, {
       headers: {
         'Content-Type': 'application/json'
       }
     });
+    console.log(response.request);
     console.log(response.data);
   } catch (error) {
     console.error(error);
@@ -26,7 +27,7 @@ const handler: Handler = async (
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: "recaptcha verified", redata: response?.data }),
+    body: JSON.stringify({ message: "recaptcha verified",redata: response?.data }),
   };
 };
 
