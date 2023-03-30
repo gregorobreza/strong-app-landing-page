@@ -16,7 +16,7 @@ const handler: Handler = async (
       secret: secret,
     }, {
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/x-www-form-urlencoded"
       }
     });
     console.log(response.request);
