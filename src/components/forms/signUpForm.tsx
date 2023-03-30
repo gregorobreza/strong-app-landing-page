@@ -12,7 +12,7 @@ import {
   SegmentedControl,
   Stack,
   Text,
-  TextInput
+  TextInput,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { modals } from "@mantine/modals";
@@ -25,7 +25,7 @@ import {
   Form,
   Formik,
   FormikHelpers,
-  FormikProps
+  FormikProps,
 } from "formik";
 import { useCallback, useEffect, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
@@ -34,7 +34,7 @@ import { TermsAndConditions } from "../dataComponents/formal/termsAndConditions"
 import { PrimaryButton } from "../styledComponents/buttons/mainButtons";
 import {
   SectionText,
-  SectionTitle
+  SectionTitle,
 } from "../styledComponents/typography/sectionTypography";
 
 export interface ISignUpForm {
@@ -71,27 +71,25 @@ export function SignUpForm(): JSX.Element {
     surveys: true,
   };
 
-    // Create an event handler so you can call the verification on button click event or form submit
-    const handleReCaptchaVerify = useCallback(async () => {
-      if (!executeRecaptcha) {
-        console.log('Execute recaptcha not yet available');
-        
-        return;
-      }
-  
-      const token = await executeRecaptcha('submitSignUpForm');
-      console.log(token)
-      const neki = await axios.post("/api/0/verifyRecaptcha", {
-        response: token
-      });
-      console.log(neki)
-      // Do whatever you want with the token
-    }, [executeRecaptcha]);
-  
-    // You can use useEffect to trigger the verification as soon as the component being loaded
-    useEffect(() => {
-      handleReCaptchaVerify();
-    }, [handleReCaptchaVerify]);
+  // Create an event handler so you can call the verification on button click event or form submit
+  const handleReCaptchaVerify = useCallback(async () => {
+    if (!executeRecaptcha) {
+      console.log("Execute recaptcha not yet available");
+
+      return;
+    }
+
+    const token = await executeRecaptcha("submitSignUpForm");
+    // const neki = await axios.post("/api/0/verifyRecaptcha", {
+    //   response: token,
+    // });
+    return token;
+  }, [executeRecaptcha]);
+
+  // You can use useEffect to trigger the verification as soon as the component being loaded
+  // useEffect(() => {
+  //   handleReCaptchaVerify();
+  // }, [handleReCaptchaVerify]);
 
   const validatorSchema = object().shape({
     email: string()
@@ -117,6 +115,20 @@ export function SignUpForm(): JSX.Element {
       setTimeout(() => {
         setSubmited(false);
       }, 6000);
+    },
+    onError: (error) => {
+      console.error(error);
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 6000);
+    },
+  });
+  const { mutateAsync: reCaptcha, } = useMutation({
+    mutationFn: async ({ token }: { token: string }) => {
+      return await axios.post("/api/0/verifyRecaptcha", {
+        response: token,
+      });
     },
     onError: (error) => {
       console.error(error);
@@ -162,11 +174,14 @@ export function SignUpForm(): JSX.Element {
         <Formik
           initialValues={initialValues}
           validationSchema={validatorSchema}
-          onSubmit={(
+          onSubmit={async (
             values: ISignUpForm,
             formikHelpers: FormikHelpers<ISignUpForm>
           ) => {
             // console.log(values);
+            const token = await handleReCaptchaVerify()
+            const checkValidity = await reCaptcha({token:token || ""})
+            console.log("check validity", checkValidity.data.redata)
             formSubmit({ formValues: values, html: signUpHtml(values.email) });
           }}
         >
@@ -349,7 +364,7 @@ export function SignUpForm(): JSX.Element {
                 <Text>
                   By submitting this form I agree with{" "}
                   <Anchor
-                  color="red.7"
+                    color="red.7"
                     component="button"
                     onClick={() =>
                       modals.open({
@@ -420,7 +435,6 @@ export function SignUpForm(): JSX.Element {
             </Form>
           )}
         </Formik>
-        <Button onClick={()=> handleReCaptchaVerify()}>test</Button>
       </>
     </Box>
   );

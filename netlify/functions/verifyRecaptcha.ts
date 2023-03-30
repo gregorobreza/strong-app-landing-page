@@ -19,15 +19,13 @@ const handler: Handler = async (
         "Content-Type": "application/x-www-form-urlencoded"
       }
     });
-    console.log(response.request);
-    console.log(response.data);
   } catch (error) {
     console.error(error);
   }
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: "recaptcha verified",redata: response?.data }),
+    body: JSON.stringify({ message: "recaptcha verification",redata: response?.data }),
   };
 };
 
