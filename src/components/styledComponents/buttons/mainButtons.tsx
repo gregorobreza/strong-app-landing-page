@@ -18,15 +18,17 @@ const useStyles = createStyles((theme) => ({
 
 interface IButtonProps {
   onClick?: () => void;
+  isLoading?: boolean
 }
 
-export function PrimaryButton({onClick, ...props}:  IButtonProps & ButtonProps): JSX.Element {
+export function PrimaryButton({onClick, isLoading, ...props}:  IButtonProps & ButtonProps): JSX.Element {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const mediumScreen = useMediaQuery(`(min-width: ${theme.breakpoints.md}px`);
   return (
     <Button
       radius="xl"
+      loading={isLoading}
       size={mediumScreen ? "lg" : "md"}
       onClick={(event) => onClick ? onClick() : event.preventDefault()}
       styles={(theme) => ({

@@ -148,7 +148,7 @@ export function SignUpForm(): JSX.Element {
       sx={(theme) => ({ color: theme.colors.dark })}
       // pos="relative"
     >
-      <LoadingOverlay visible={isLoading || reIsLoading} overlayBlur={2} />
+      {/* <LoadingOverlay visible={isLoading || reIsLoading} overlayBlur={2} /> */}
       <>
         <Modal
           opened={opened}
@@ -390,6 +390,7 @@ export function SignUpForm(): JSX.Element {
                 <PrimaryButton
                   onClick={() => formikProps.submitForm()}
                   size="md"
+                  isLoading={isLoading || reIsLoading}
                 >
                   Submit
                 </PrimaryButton>
