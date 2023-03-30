@@ -33,7 +33,7 @@ const useStyles = createStyles((theme, numOfWords:number) => ({
     fontSize: 110,
     width: 110 * 1.2 * numOfWords,
     lineHeight: 1.2,
-    color: theme.fn.rgba(theme.colors.dark[0], 0.08),
+    color: theme.fn.rgba(theme.colors.dark[0], 0.10),
     writingMode: "vertical-lr",
     whiteSpace: "pre-line",
     transform: "rotate(180deg)",

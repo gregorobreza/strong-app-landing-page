@@ -2,6 +2,7 @@ import { signUpHtml } from "@/utils/renderUtils";
 import {
   Anchor,
   Box,
+  Button,
   Checkbox,
   Chip,
   Collapse,
@@ -27,7 +28,8 @@ import {
   FormikHelpers,
   FormikProps,
 } from "formik";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { object, string } from "yup";
 import { TermsAndConditions } from "../dataComponents/formal/termsAndConditions";
 import { PrimaryButton } from "../styledComponents/buttons/mainButtons";
@@ -60,6 +62,8 @@ export function SignUpForm(): JSX.Element {
   const [submited, setSubmited] = useState(false);
   const [error, setError] = useState(false);
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const initialValues: ISignUpForm = {
     email: "",
     interestedAs: ["athlete"],
@@ -67,6 +71,23 @@ export function SignUpForm(): JSX.Element {
     coachLevel: "recreational",
     surveys: true,
   };
+
+    // Create an event handler so you can call the verification on button click event or form submit
+    const handleReCaptchaVerify = useCallback(async () => {
+      if (!executeRecaptcha) {
+        console.log('Execute recaptcha not yet available');
+        return;
+      }
+  
+      const token = await executeRecaptcha('yourAction');
+      console.log(token)
+      // Do whatever you want with the token
+    }, [executeRecaptcha]);
+  
+    // You can use useEffect to trigger the verification as soon as the component being loaded
+    useEffect(() => {
+      handleReCaptchaVerify();
+    }, [handleReCaptchaVerify]);
 
   const validatorSchema = object().shape({
     email: string()
@@ -395,6 +416,7 @@ export function SignUpForm(): JSX.Element {
             </Form>
           )}
         </Formik>
+        <Button onClick={()=> handleReCaptchaVerify()}>test</Button>
       </>
     </Box>
   );

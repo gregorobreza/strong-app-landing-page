@@ -5,6 +5,7 @@ import { defaultThemeOverride } from "@/projectConfigurations/themeConfig";
 import { CustomFonts } from "@/projectConfigurations/global";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ModalsProvider } from "@mantine/modals";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -35,7 +36,9 @@ export default function App(props: AppProps) {
           {" "}
           <ModalsProvider>
             <CustomFonts />
+            <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_RECAPTCHA_SITE_KEY || ""}>
             <Component {...pageProps} />
+            </GoogleReCaptchaProvider>
           </ModalsProvider>
         </MantineProvider>
       </QueryClientProvider>

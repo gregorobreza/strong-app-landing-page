@@ -24,7 +24,7 @@ const useStyles = createStyles((theme) => ({
   bigTitle: {
     fontWeight: 700,
     fontSize: 110,
-    color: theme.fn.rgba(theme.colors.dark[0], 0.08),
+    color: theme.fn.rgba(theme.colors.dark[0], 0.10),
     lineHeight: 1.2,
     [theme.fn.smallerThan("md")]: {
       fontSize: 80,
@@ -83,6 +83,7 @@ export function SectionTextContainer({
     <Container
       p="xl"
       fluid
+      m={0}
       sx={(theme) => ({
         backgroundColor: theme.fn.rgba("#ffffff", 0.05),
         borderRadius: theme.radius.lg,

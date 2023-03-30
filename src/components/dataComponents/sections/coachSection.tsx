@@ -65,6 +65,7 @@ export function CoachSection(): JSX.Element {
                   gap: theme.spacing.lg,
                 },
               })}
+
             >
               {coachFeatures.map((value, index) => (
                 <IconWithText key={index} Icon={value.Icon} text={value.text} />
