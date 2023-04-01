@@ -34,7 +34,8 @@ export function CookieNotification() {
           </Group>
         }
         overlayProps={{ opacity: 0.5, blur: 4 }}
-        size={200}
+        size="auto"
+
       >
         <Stack>
           <Text>
@@ -64,7 +65,7 @@ export function CookieNotification() {
             </Anchor>
             .
           </Text>
-          <Flex gap="md">
+          <Flex gap="md" direction={{ base: 'column', sm: 'row' }}>
             <Button onClick={close} color="steelteal.6" variant="outline" radius="xl">
               Deny
             </Button>
