@@ -5,6 +5,7 @@ import { IntroSection } from "@/components/dataComponents/sections/introSection"
 import { SignUpSection } from "@/components/dataComponents/sections/signUpSection";
 import { HEADER_HEIGHT } from "@/components/layout/header";
 import { Layout } from "@/components/layout/layout";
+import { CookieNotification } from "@/components/styledComponents/cookies/cookieNotification";
 import { Box, Container, Flex, Stack } from "@mantine/core";
 import { useScrollIntoView } from "@mantine/hooks";
 import { Inter } from "@next/font/google";
@@ -60,8 +61,12 @@ export default function Home() {
               <SignUpSection />
             </Box>
           </Flex>
+        
+
         </Container>
+        <CookieNotification/>
       </Layout>
+      
     </>
   );
 }

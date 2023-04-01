@@ -1,17 +1,16 @@
 import { PrimaryButton } from "@/components/styledComponents/buttons/mainButtons";
 import { Title, Text, Stack } from "@mantine/core";
-import { modals } from "@mantine/modals";
+import { modals, useModals } from "@mantine/modals";
 
 export function PrivacyPolicy(): JSX.Element {
   return (
     <Stack>
       <Text>
         This privacy policy applies to the use of the landing page owned and
-        operated by Barbell Logbook. This policy sets out how we collect,
-        use, and protect any information that you give us when you use our
-        website. We are committed to protecting your privacy and ensuring that
-        your personal information is processed lawfully, fairly, and
-        transparently.
+        operated by Barbell Logbook. This policy sets out how we collect, use,
+        and protect any information that you give us when you use our website.
+        We are committed to protecting your privacy and ensuring that your
+        personal information is processed lawfully, fairly, and transparently.
       </Text>
       <Title order={3}>Data Collection</Title>
       <Text>We may collect the following information:</Text>
@@ -53,6 +52,23 @@ export function PrivacyPolicy(): JSX.Element {
         only those employees, contractors, and agents who need it to perform
         their duties.
       </Text>
+      <Title order={3}>Cookies and Other Tracking Technologies</Title>
+      <Text>
+        We may use cookies, web beacons, and other tracking technologies to
+        collect information about your online behavior and preferences. Cookies
+        are small data files that are stored on your device when you visit our
+        website. They allow us to remember your preferences and provide you with
+        a personalized experience. We may use both session cookies and
+        persistent cookies. Session cookies are deleted when you close your
+        browser, while persistent cookies remain on your device until they
+        expire or you delete them. We may also use third-party cookies to track
+        your online behavior and serve you with personalized ads. These cookies
+        are governed by the privacy policies of the third-party providers and
+        not by this privacy policy. You can control the use of cookies through
+        your browser settings or trough cookies preferences on the page. Most
+        browsers allow you to block or delete cookies, but doing so may limit
+        your ability to use certain features of our website.
+      </Text>
       <Title order={3}>Your Rights</Title>
       <Text>You have the right to:</Text>
       <Text>
@@ -80,9 +96,9 @@ export function PrivacyPolicy(): JSX.Element {
         and agree to the collection, use, and sharing of your information as
         described herein.
       </Text>
-      <PrimaryButton size="md" onClick={() => modals.closeAll()}>
-              Close
-            </PrimaryButton>
+      <PrimaryButton color="steelteal.6" size="md" onClick={() => modals.closeAll()}>
+        Close
+      </PrimaryButton>
     </Stack>
   );
 }

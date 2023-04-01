@@ -76,21 +76,16 @@ export function SignUpForm(): JSX.Element {
   const handleReCaptchaVerify = useCallback(async () => {
     if (!executeRecaptcha) {
       console.log("Execute recaptcha not yet available");
-
       return;
     }
-
-    const token = await executeRecaptcha("submitSignUpForm");
-    // const neki = await axios.post("/api/0/verifyRecaptcha", {
-    //   response: token,
-    // });
+    let token = "";
+    try {
+      token = await executeRecaptcha("submitSignUpForm");
+    } catch (error) {
+      console.error(error);
+    }
     return token;
   }, [executeRecaptcha]);
-
-  // You can use useEffect to trigger the verification as soon as the component being loaded
-  // useEffect(() => {
-  //   handleReCaptchaVerify();
-  // }, [handleReCaptchaVerify]);
 
   const validatorSchema = object().shape({
     email: string()
@@ -191,6 +186,11 @@ export function SignUpForm(): JSX.Element {
                 formValues: values,
                 html: signUpHtml(values.email),
               });
+            } else {
+              setError(true);
+              setTimeout(() => {
+                setError(false);
+              }, 6000);
             }
           }}
         >
@@ -370,32 +370,31 @@ export function SignUpForm(): JSX.Element {
                     }}
                   </Field>
                 </Box>
-               
 
                 <Stack spacing={5}>
-                <Text size={12} >
-                  By submitting this form you agree with{" "}
-                  <Anchor
-                    color="red.7"
-                    component="button"
-                    onClick={() =>
-                      modals.open({
-                        title: "Terms & Conditions",
-                        children: (
-                          <>
-                            <TermsAndConditions />
-                          </>
-                        ),
-                        radius: "md",
-                        size: 800,
-                      })
-                    }
-                  >
-                    Terms & Conditions
-                  </Anchor>
-                  .
-                </Text>
-                <Text size={12} >
+                  <Text size={12}>
+                    By submitting this form you agree with{" "}
+                    <Anchor
+                      color="red.7"
+                      component="button"
+                      onClick={() =>
+                        modals.open({
+                          title: "Terms & Conditions",
+                          children: (
+                            <>
+                              <TermsAndConditions />
+                            </>
+                          ),
+                          radius: "md",
+                          size: 800,
+                        })
+                      }
+                    >
+                      Terms & Conditions
+                    </Anchor>
+                    .
+                  </Text>
+                  <Text size={12}>
                     This site is protected by reCAPTCHA and the Google{" "}
                     <Anchor
                       color="red.7"
@@ -409,7 +408,6 @@ export function SignUpForm(): JSX.Element {
                       color="red.7"
                       href="https://policies.google.com/terms"
                       target="_blank"
-
                     >
                       Terms of Service
                     </Anchor>{" "}
@@ -422,7 +420,6 @@ export function SignUpForm(): JSX.Element {
                   >
                     Submit
                   </PrimaryButton>
-                 
                 </Stack>
                 <Collapse in={submited}>
                   <Box

@@ -66,7 +66,7 @@ export function TermsAndConditions(): JSX.Element {
         button, you acknowledge that you have read and understood these terms
         and conditions and agree to be bound by them.
       </Text>
-      <PrimaryButton size="md" onClick={() => modals.closeAll()}>
+      <PrimaryButton color="steelteal.6" size="md" onClick={() => modals.closeAll()}>
         Close
       </PrimaryButton>
     </Stack>

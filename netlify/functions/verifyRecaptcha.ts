@@ -21,6 +21,10 @@ const handler: Handler = async (
     });
   } catch (error) {
     console.error(error);
+    return{
+      statusCode: 404,
+      body: JSON.stringify({ message: "recaptcha verification failed"}),
+    }
   }
 
   return {
