@@ -92,7 +92,7 @@ export function CookiesCard({ data }: SwitchesCardProps) {
   return (
     <Stack>
         <Divider my="sm" />
-      <Text>
+      <Text size="sm">
         Welcome to our cookie preferences center! We want to make sure
         you&rsquo;re in control of your data and your browsing experience. You
         can choose which cookies to allow or block by clicking on the different
@@ -111,6 +111,7 @@ export function CookiesCard({ data }: SwitchesCardProps) {
               ),
               radius: "md",
               size: 800,
+              overlayProps:{opacity: 0.5, blur: 4}
             })
           }
         >
@@ -122,7 +123,7 @@ export function CookiesCard({ data }: SwitchesCardProps) {
       <Divider my="sm" />
       <>{items}</>
       <Divider my="sm" />
-      <Text>
+      <Text size="sm">
         Please note that by clicking &rsquo;Save preferences&rsquo;, you agree
         to our use of cookies as outlined in our{" "}
         <Anchor
@@ -138,6 +139,7 @@ export function CookiesCard({ data }: SwitchesCardProps) {
               ),
               radius: "md",
               size: 800,
+              overlayProps:{opacity: 0.5, blur: 4}
             })
           }
         >

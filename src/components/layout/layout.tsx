@@ -15,6 +15,7 @@ export function Layout({ children,scrollTo,  ...props }: PropsWithChildren<Layou
       styles={{
         main: {
           padding: 0,
+          overflowY: "auto"
         },
       }}
       header={<HeaderAction links={LINKS} scrollTo={scrollTo} />}

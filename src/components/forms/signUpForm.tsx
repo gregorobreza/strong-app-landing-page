@@ -162,9 +162,9 @@ export function SignUpForm(): JSX.Element {
               your time and won&apos;t send any unwanted emails. You can opt-out
               at any time. We appreciate your help!
             </SectionText>
-            <PrimaryButton size="md" onClick={() => setOpened(false)}>
+            <Button size="md" radius="xl" color="steelteal.6" onClick={() => setOpened(false)}>
               Close
-            </PrimaryButton>
+            </Button>
           </Stack>
         </Modal>
         <Formik
@@ -387,6 +387,7 @@ export function SignUpForm(): JSX.Element {
                           ),
                           radius: "md",
                           size: 800,
+                          overlayProps:{opacity: 0.5, blur: 4}
                         })
                       }
                     >

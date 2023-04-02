@@ -22,7 +22,7 @@ export const cardVariants: Variants = {
       type: "spring",
       bounce: 0.2,
       duration: 0.7,
-      delay: 0.7
+      delay: 0.4
     }
   }
 };

@@ -35,7 +35,6 @@ export function CookieNotification() {
         }
         overlayProps={{ opacity: 0.5, blur: 4 }}
         size="auto"
-
       >
         <Stack>
           <Text>
@@ -58,6 +57,7 @@ export function CookieNotification() {
                   ),
                   radius: "md",
                   size: 800,
+                  overlayProps: { opacity: 0.5, blur: 4 },
                 })
               }
             >
@@ -65,8 +65,17 @@ export function CookieNotification() {
             </Anchor>
             .
           </Text>
-          <Flex gap="md" direction={{ base: 'column', sm: 'row' }}>
-            <Button onClick={close} color="steelteal.6" variant="outline" radius="xl">
+          <Flex
+            gap="md"
+            direction={{ base: "column", sm: "row" }}
+            justify="flex-end"
+          >
+            <Button
+              onClick={close}
+              color="steelteal.6"
+              variant="outline"
+              radius="xl"
+            >
               Deny
             </Button>
             <Button
@@ -76,7 +85,12 @@ export function CookieNotification() {
               onClick={() => {
                 close();
                 modals.open({
-                  title: "Configure Cookies",
+                  title: (
+                    <Group>
+                      <IconCookie size={25} />{" "}
+                      <Text span>Configure Cookies</Text>
+                    </Group>
+                  ),
                   children: (
                     <>
                       <CookiesCard data={cookieData.data} />
@@ -85,6 +99,7 @@ export function CookieNotification() {
                   radius: "md",
                   size: 800,
                   centered: true,
+                  overlayProps: { opacity: 0.5, blur: 4 },
                 });
               }}
             >
@@ -107,7 +122,11 @@ export function CookieNotification() {
             style={{ display: opened ? "none" : "block" }}
             onClick={() =>
               modals.open({
-                title: "Configure Cookies",
+                title: (
+                  <Group>
+                    <IconCookie size={25} /> <Text span>Configure Cookies</Text>
+                  </Group>
+                ),
                 children: (
                   <>
                     <CookiesCard data={cookieData.data} />
@@ -116,6 +135,7 @@ export function CookieNotification() {
                 radius: "md",
                 size: 800,
                 centered: true,
+                overlayProps: { opacity: 0.5, blur: 4 },
               })
             }
           >

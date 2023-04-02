@@ -25,7 +25,8 @@ export const footerLinks:{ sectionName?: SectionName; label: string; onClick?: F
         title: "Privacy & Policy",
         children: (<><PrivacyPolicy/></>),
         radius: "md",
-        size: 800
+        size: 800,
+        overlayProps:{opacity: 0.5, blur: 4}
       })
     },
   ]
