@@ -4,6 +4,7 @@ import { AppShell } from "@mantine/core";
 import { PropsWithChildren } from "react";
 import { StrongFooter } from "./footer";
 import { HeaderAction, SectionName } from "./header";
+import { CookieNotification } from "../styledComponents/cookies/cookieNotification";
 
 interface LayoutProps {
   scrollTo: Record<SectionName, any>
@@ -22,7 +23,10 @@ export function Layout({ children,scrollTo,  ...props }: PropsWithChildren<Layou
       footer={<StrongFooter links={footerLinks} scrollTo={scrollTo} />}
       fixed={false}
     >
+      <>
       {children}
+      <CookieNotification/>
+      </>
     </AppShell>
   );
 }

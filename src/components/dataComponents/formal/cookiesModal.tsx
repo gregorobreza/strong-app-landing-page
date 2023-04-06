@@ -36,7 +36,7 @@ const useStyles = createStyles((theme) => ({
   switch: {
     body: {},
     "& *": {
-      cursor: "pointer",
+      // cursor: "pointer",
       color: theme.white,
       borderColor: theme.white,
     },
@@ -51,7 +51,7 @@ export interface SwitchesCardProps {
   data: {
     title: string;
     description: string;
-    label: "essential" | "performance" | "social";
+    label: "essential" | "performance" | "social" | "advertising";
     disabled?: boolean;
   }[];
 }
@@ -63,6 +63,7 @@ export function CookiesCard({ data }: SwitchesCardProps) {
     essential: true,
     performance: false,
     social: false,
+    advertising: false
   });
 
   const items = data.map((item, index) => (

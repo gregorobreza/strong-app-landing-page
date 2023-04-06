@@ -18,16 +18,46 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { modals } from "@mantine/modals";
 import { IconCookie } from "@tabler/icons-react";
+import { hasCookie, setCookie } from "cookies-next";
+import { useEffect } from "react";
 
 export function CookieNotification() {
-  const [opened, { open, close }] = useDisclosure(true);
+  const [opened, { open, close }] = useDisclosure(false);
+
+  useEffect(() => {
+    if (!hasCookie("localConsent")) {
+      open();
+    } else {
+      close();
+    }
+  }, []);
+
+  const acceptCookie = () => {
+    close();
+    setCookie("localConsent", "true", { maxAge: 60 * 60 * 24 * 365 });
+    // gtag('consent', 'update', {
+    //   ad_storage: 'granted',
+    //   analytics_storage: 'granted',
+    // });
+    console.log("accepting cookies");
+  };
+  const closeP = () => {
+    close();
+    console.log("closing");
+  };
+  const denyCookie = () => {
+    close();
+    setCookie("localConsent", "false", { maxAge: 60 * 60 * 24 * 365 });
+    console.log("denying cookie");
+  };
 
   return (
     <>
       <Drawer
         position="bottom"
+        closeOnClickOutside={false}
         opened={opened}
-        onClose={close}
+        onClose={closeP}
         title={
           <Group>
             <IconCookie size={25} /> <Text span>Cookie Notice</Text>
@@ -71,12 +101,12 @@ export function CookieNotification() {
             justify="flex-end"
           >
             <Button
-              onClick={close}
+              onClick={denyCookie}
               color="steelteal.6"
               variant="outline"
               radius="xl"
             >
-              Deny
+              Only essential Cookies
             </Button>
             <Button
               color="steelteal.6"
@@ -105,7 +135,7 @@ export function CookieNotification() {
             >
               Manage your cookies preferences
             </Button>
-            <Button onClick={close} color="steelteal.6" radius="xl">
+            <Button onClick={acceptCookie} color="steelteal.6" radius="xl">
               Accept All Cookies
             </Button>
           </Flex>

@@ -16,6 +16,12 @@ export const cookieData: SwitchesCardProps = {
       label: "performance",
     },
     {
+      title: "Targeting or Advertising Cookies",
+      description:
+      "These cookies are used to deliver targeted ads based on a user's interests and behavior.",
+      label: "advertising",
+    },
+    {
       title: "Social media cookies",
       description:
         "These cookies may be set by social media platforms to allow you to share content from our website on your social media profiles.",
