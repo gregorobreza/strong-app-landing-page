@@ -200,7 +200,7 @@ export function SignUpForm(): JSX.Element {
           }}
         >
           {(formikProps: FormikProps<ISignUpForm>) => (
-            <Form>
+            <Form id="sign-up-form">
               <SectionTitle color="dark">EARLY BIRD SIGN-UP</SectionTitle>
               <Stack spacing={30}>
                 <Field name="email">
