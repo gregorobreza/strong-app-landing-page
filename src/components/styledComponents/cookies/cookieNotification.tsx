@@ -1,6 +1,7 @@
 import { CookiesCard } from "@/components/dataComponents/formal/cookiesModal";
 import { PrivacyPolicy } from "@/components/dataComponents/formal/privacyPolicy";
 import { cookieData } from "@/staticData/cookieData";
+import { useSetConsentCookies } from "@/utils/cookieSettings";
 import {
   Affix,
   Button,
@@ -19,35 +20,31 @@ import { useDisclosure } from "@mantine/hooks";
 import { modals } from "@mantine/modals";
 import { IconCookie } from "@tabler/icons-react";
 import { hasCookie, setCookie } from "cookies-next";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export function CookieNotification() {
   const [opened, { open, close }] = useDisclosure(false);
+  const { acceptAllCookies, denyAllCookies, showCookiesBanner } =
+    useSetConsentCookies();
+    const router = useRouter()
 
   useEffect(() => {
-    if (!hasCookie("localConsent")) {
+    if (showCookiesBanner()) {
       open();
     } else {
       close();
     }
-  }, []);
+  }, [close, open, showCookiesBanner]);
 
   const acceptCookie = () => {
     close();
-    setCookie("localConsent", "true", { maxAge: 60 * 60 * 24 * 365 });
-    // gtag('consent', 'update', {
-    //   ad_storage: 'granted',
-    //   analytics_storage: 'granted',
-    // });
+    setCookie("consent", "true", { maxAge: 60 * 60 * 24 * 365 });
     console.log("accepting cookies");
-  };
-  const closeP = () => {
-    close();
-    console.log("closing");
   };
   const denyCookie = () => {
     close();
-    setCookie("localConsent", "false", { maxAge: 60 * 60 * 24 * 365 });
+    setCookie("consent", "false", { maxAge: 60 * 60 * 24 * 365 });
     console.log("denying cookie");
   };
 
@@ -57,7 +54,7 @@ export function CookieNotification() {
         position="bottom"
         closeOnClickOutside={false}
         opened={opened}
-        onClose={closeP}
+        onClose={close}
         title={
           <Group>
             <IconCookie size={25} /> <Text span>Cookie Notice</Text>
@@ -101,7 +98,10 @@ export function CookieNotification() {
             justify="flex-end"
           >
             <Button
-              onClick={denyCookie}
+              onClick={() => {
+                denyAllCookies();
+                close();
+              }}
               color="steelteal.6"
               variant="outline"
               radius="xl"
@@ -135,7 +135,15 @@ export function CookieNotification() {
             >
               Manage your cookies preferences
             </Button>
-            <Button onClick={acceptCookie} color="steelteal.6" radius="xl">
+            <Button
+              onClick={() => {
+                acceptAllCookies();
+                close();
+                router.reload()
+              }}
+              color="steelteal.6"
+              radius="xl"
+            >
               Accept All Cookies
             </Button>
           </Flex>

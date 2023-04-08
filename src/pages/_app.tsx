@@ -9,12 +9,12 @@ import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import "../styles/globals.css";
 import Script from "next/script";
 import { getCookie } from "cookies-next";
+import { useSetConsentCookies } from "@/utils/cookieSettings";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
   const queryClient = new QueryClient();
-
-  const consent = getCookie("localConsent");
+  const {currentCookies} = useSetConsentCookies()
 
   return (
     <>
@@ -29,7 +29,7 @@ export default function App(props: AppProps) {
         <link rel="icon" type="image/svg+xml" href="/strongman.svg" />
         <link rel="icon" type="image/x-icon" href="/strongman.ico" />
       </Head>
-      {/* <Script
+      <Script
         id="gtag"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -50,7 +50,7 @@ export default function App(props: AppProps) {
         }}
       />
 
-      {consent === true && (
+      {currentCookies().performance === true && (
         <Script
           id="consupd"
           strategy="afterInteractive"
@@ -63,7 +63,7 @@ export default function App(props: AppProps) {
           `,
           }}
         />
-      )} */}
+      )}
       <QueryClientProvider client={queryClient}>
         <MantineProvider
           withGlobalStyles

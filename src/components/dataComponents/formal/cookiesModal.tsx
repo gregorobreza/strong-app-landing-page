@@ -1,18 +1,19 @@
+import { useSetConsentCookies } from "@/utils/cookieSettings";
 import {
-  createStyles,
-  Card,
-  Group,
-  Switch,
-  Text,
-  rem,
-  Stack,
   Anchor,
   Button,
   Divider,
+  Group,
+  Stack,
+  Switch,
+  Text,
+  createStyles,
+  rem
 } from "@mantine/core";
-import { useListState, useSetState } from "@mantine/hooks";
+import { useSetState } from "@mantine/hooks";
 import { modals } from "@mantine/modals";
-import { useState } from "react";
+import { CookieValueTypes } from "cookies-next";
+import { useRouter } from "next/router";
 import { PrivacyPolicy } from "./privacyPolicy";
 
 const useStyles = createStyles((theme) => ({
@@ -56,15 +57,21 @@ export interface SwitchesCardProps {
   }[];
 }
 
+export interface CookieType {
+  essential: CookieValueTypes;
+  performance: CookieValueTypes;
+  social: CookieValueTypes;
+  advertising: CookieValueTypes;
+}
+
 export function CookiesCard({ data }: SwitchesCardProps) {
   const { classes } = useStyles();
+  const { currentCookies } = useSetConsentCookies();
+  const router = useRouter();
 
-  const [state, setState] = useSetState({
-    essential: true,
-    performance: false,
-    social: false,
-    advertising: false
-  });
+  const [state, setState] = useSetState<CookieType>(currentCookies());
+
+  const { manageCookies } = useSetConsentCookies();
 
   const items = data.map((item, index) => (
     <Group
@@ -81,18 +88,24 @@ export function CookiesCard({ data }: SwitchesCardProps) {
       <Switch
         onLabel="ON"
         offLabel="OFF"
-        checked={state[item.label]}
+        checked={
+          state[item.label] == (null || undefined)
+            ? false
+            : (state[item.label] as boolean)
+        }
         className={classes.switch}
         size="lg"
         disabled={item.disabled}
-        onClick={(event) => setState({[item.label]: event.currentTarget.checked})}
+        onClick={(event) =>
+          setState({ [item.label]: event.currentTarget.checked })
+        }
       />
     </Group>
   ));
 
   return (
     <Stack>
-        <Divider my="sm" />
+      <Divider my="sm" />
       <Text size="sm">
         Welcome to our cookie preferences center! We want to make sure
         you&rsquo;re in control of your data and your browsing experience. You
@@ -112,7 +125,7 @@ export function CookiesCard({ data }: SwitchesCardProps) {
               ),
               radius: "md",
               size: 800,
-              overlayProps:{opacity: 0.5, blur: 4}
+              overlayProps: { opacity: 0.5, blur: 4 },
             })
           }
         >
@@ -140,7 +153,7 @@ export function CookiesCard({ data }: SwitchesCardProps) {
               ),
               radius: "md",
               size: 800,
-              overlayProps:{opacity: 0.5, blur: 4}
+              overlayProps: { opacity: 0.5, blur: 4 },
             })
           }
         >
@@ -158,7 +171,13 @@ export function CookiesCard({ data }: SwitchesCardProps) {
         >
           Cancel
         </Button>
-        <Button onClick={() => console.log(state)} color="steelteal.6" radius="xl">
+        <Button
+          onClick={() => {
+            manageCookies(state), router.reload();
+          }}
+          color="steelteal.6"
+          radius="xl"
+        >
           Save preferences
         </Button>
       </Group>
