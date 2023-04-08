@@ -162,7 +162,12 @@ export function SignUpForm(): JSX.Element {
               your time and won&apos;t send any unwanted emails. You can opt-out
               at any time. We appreciate your help!
             </SectionText>
-            <Button size="md" radius="xl" color="steelteal.6" onClick={() => setOpened(false)}>
+            <Button
+              size="md"
+              radius="xl"
+              color="steelteal.6"
+              onClick={() => setOpened(false)}
+            >
               Close
             </Button>
           </Stack>
@@ -387,7 +392,7 @@ export function SignUpForm(): JSX.Element {
                           ),
                           radius: "md",
                           size: 800,
-                          overlayProps:{opacity: 0.5, blur: 4}
+                          overlayProps: { opacity: 0.5, blur: 4 },
                         })
                       }
                     >
@@ -414,13 +419,17 @@ export function SignUpForm(): JSX.Element {
                     </Anchor>{" "}
                     apply.
                   </Text>
-                  <PrimaryButton
-                    onClick={() => formikProps.submitForm()}
+                  {/* <PrimaryButton
+                    // onClick={() => formikProps.submitForm()}
                     size="md"
                     isLoading={isLoading || reIsLoading}
+                    type="submit"
                   >
                     Submit
-                  </PrimaryButton>
+                  </PrimaryButton> */}
+                  <Button radius="xl" size="md" loading={isLoading || reIsLoading} type="submit">
+                    Submit
+                  </Button>
                 </Stack>
                 <Collapse in={submited}>
                   <Box
