@@ -38,7 +38,8 @@ export default function App(props: AppProps) {
 
         gtag('consent', 'default', {
               'ad_storage': 'denied',
-              'analytics_storage': 'denied'
+              'analytics_storage': 'denied',
+              'pixel_storage': 'denied'
             });
 
 
@@ -59,6 +60,19 @@ export default function App(props: AppProps) {
             gtag('consent', 'update', {
               'ad_storage': 'granted',
               'analytics_storage': 'granted'
+            });
+          `,
+          }}
+        />
+      )}
+      {currentCookies().advertising === true && (
+        <Script
+          id="consuad"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            gtag('consent', 'update', {
+              'pixel_storage': 'granted'
             });
           `,
           }}
