@@ -440,6 +440,7 @@ export function SignUpForm(): JSX.Element {
                       backgroundColor: theme.colors.steelteal[6],
                       color: theme.white,
                     })}
+                    id="success-message"
                   >
                     <Text align="center">
                       💪You succesfully submited form!{" "}
@@ -464,6 +465,7 @@ export function SignUpForm(): JSX.Element {
                       backgroundColor: theme.colors.red[8],
                       color: theme.white,
                     })}
+                    id="error-message"
                   >
                     <Text align="center">
                       Uh-oh, looks like a technical glitch. Please try again

@@ -1,6 +1,4 @@
-import {
-    CookieType
-} from "@/components/dataComponents/formal/cookiesModal";
+import { CookieType } from "@/components/dataComponents/formal/cookiesModal";
 import { getCookie, setCookie } from "cookies-next";
 
 type possibleCookies =
@@ -31,18 +29,30 @@ export function useSetConsentCookies() {
     });
   }
   function manageCookies(cookieType: CookieType) {
-    setCookie("consentPerformanceCookies", cookieType.performance, {
-      maxAge: 60 * 60 * 24 * 365,
-      sameSite: "lax",
-    });
-    setCookie("consentAdvertisingCookies", cookieType.advertising, {
-      maxAge: 60 * 60 * 24 * 365,
-      sameSite: "lax",
-    });
-    setCookie("consentSocialMediaCookies", cookieType.social, {
-      maxAge: 60 * 60 * 24 * 365,
-      sameSite: "lax",
-    });
+    setCookie(
+      "consentPerformanceCookies",
+      cookieType.performance === undefined ? false : cookieType.performance,
+      {
+        maxAge: 60 * 60 * 24 * 365,
+        sameSite: "lax",
+      }
+    );
+    setCookie(
+      "consentAdvertisingCookies",
+      cookieType.advertising === undefined ? false : cookieType.advertising,
+      {
+        maxAge: 60 * 60 * 24 * 365,
+        sameSite: "lax",
+      }
+    );
+    setCookie(
+      "consentSocialMediaCookies",
+      cookieType.social === undefined ? false : cookieType.social,
+      {
+        maxAge: 60 * 60 * 24 * 365,
+        sameSite: "lax",
+      }
+    );
   }
   function currentCookies(): CookieType {
     const performance = getCookie("consentPerformanceCookies");

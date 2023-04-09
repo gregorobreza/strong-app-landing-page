@@ -35,18 +35,7 @@ export function CookieNotification() {
     } else {
       close();
     }
-  }, [close, open, showCookiesBanner]);
-
-  const acceptCookie = () => {
-    close();
-    setCookie("consent", "true", { maxAge: 60 * 60 * 24 * 365 });
-    console.log("accepting cookies");
-  };
-  const denyCookie = () => {
-    close();
-    setCookie("consent", "false", { maxAge: 60 * 60 * 24 * 365 });
-    console.log("denying cookie");
-  };
+  }, []);
 
   return (
     <>
