@@ -1,25 +1,21 @@
-import { CookiesCard } from "@/components/dataComponents/formal/cookiesModal";
-import { PrivacyPolicy } from "@/components/dataComponents/formal/privacyPolicy";
 import { cookieData } from "@/staticData/cookieData";
 import { useSetConsentCookies } from "@/utils/cookieSettings";
 import {
   Affix,
+  Anchor,
   Button,
   Drawer,
   Flex,
-  Notification,
-  rem,
+  Group,
   Stack,
+  Text,
   Tooltip,
   UnstyledButton,
-  Text,
-  Group,
-  Anchor,
+  rem
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { modals } from "@mantine/modals";
+import { openContextModal } from "@mantine/modals";
 import { IconCookie } from "@tabler/icons-react";
-import { hasCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -64,13 +60,10 @@ export function CookieNotification() {
               component="button"
               color="steelteal.6"
               onClick={() =>
-                modals.open({
+                openContextModal({
+                  modal: "privacyPolicy",
                   title: "Privacy & Policy",
-                  children: (
-                    <>
-                      <PrivacyPolicy />
-                    </>
-                  ),
+                  innerProps: {},
                   radius: "md",
                   size: 800,
                   overlayProps: { opacity: 0.5, blur: 4 },
@@ -103,18 +96,15 @@ export function CookieNotification() {
               radius="xl"
               onClick={() => {
                 close();
-                modals.open({
+                openContextModal({
+                  modal: "cookiesSettings",
                   title: (
                     <Group>
                       <IconCookie size={25} />{" "}
                       <Text span>Configure Cookies</Text>
                     </Group>
                   ),
-                  children: (
-                    <>
-                      <CookiesCard data={cookieData.data} />
-                    </>
-                  ),
+                  innerProps: {switches: cookieData},
                   radius: "md",
                   size: 800,
                   centered: true,
@@ -145,20 +135,20 @@ export function CookieNotification() {
               background: theme.colors.steelteal[6],
               borderRadius: theme.radius.xl,
               padding: 2,
+              width:40,
+              height:40,
             })}
             style={{ display: opened ? "none" : "block" }}
             onClick={() =>
-              modals.open({
+              openContextModal({
+                modal: "cookiesSettings",
                 title: (
                   <Group>
-                    <IconCookie size={25} /> <Text span>Configure Cookies</Text>
+                    <IconCookie size={25} />{" "}
+                    <Text span>Configure Cookies</Text>
                   </Group>
                 ),
-                children: (
-                  <>
-                    <CookiesCard data={cookieData.data} />
-                  </>
-                ),
+                innerProps: {switches: cookieData},
                 radius: "md",
                 size: 800,
                 centered: true,

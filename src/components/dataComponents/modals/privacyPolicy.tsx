@@ -1,8 +1,9 @@
 import { PrimaryButton } from "@/components/styledComponents/buttons/mainButtons";
-import { Title, Text, Stack } from "@mantine/core";
-import { modals, useModals } from "@mantine/modals";
+import { Stack, Text, Title } from "@mantine/core";
+import { ContextModalProps, modals } from "@mantine/modals";
 
-export function PrivacyPolicy(): JSX.Element {
+export const PrivacyPolicyModal = ({ context, id, innerProps }: ContextModalProps<{ }>) =>{
+  
   return (
     <Stack>
       <Text>
@@ -96,7 +97,7 @@ export function PrivacyPolicy(): JSX.Element {
         and agree to the collection, use, and sharing of your information as
         described herein.
       </Text>
-      <PrimaryButton color="steelteal.6" size="md" onClick={() => modals.closeAll()}>
+      <PrimaryButton color="steelteal.6" size="md" onClick={() => {context.closeModal(id)}}>
         Close
       </PrimaryButton>
     </Stack>

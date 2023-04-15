@@ -1,15 +1,15 @@
+import { CustomFonts } from "@/projectConfigurations/global";
+import { defaultThemeOverride } from "@/projectConfigurations/themeConfig";
+import { useSetConsentCookies } from "@/utils/cookieSettings";
+import { MantineProvider } from "@mantine/core";
+import { ModalsProvider } from "@mantine/modals";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { MantineProvider } from "@mantine/core";
-import { defaultThemeOverride } from "@/projectConfigurations/themeConfig";
-import { CustomFonts } from "@/projectConfigurations/global";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ModalsProvider } from "@mantine/modals";
+import Script from "next/script";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import "../styles/globals.css";
-import Script from "next/script";
-import { getCookie } from "cookies-next";
-import { useSetConsentCookies } from "@/utils/cookieSettings";
+import { modals } from "@/components/dataComponents/modals/registredModals";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -88,7 +88,7 @@ export default function App(props: AppProps) {
           }}
         >
           {" "}
-          <ModalsProvider>
+          <ModalsProvider modals={modals}>
             <CustomFonts />
             <GoogleReCaptchaProvider
               reCaptchaKey={process.env.GOOGLE_RECAPTCHA_SITE_KEY || ""}

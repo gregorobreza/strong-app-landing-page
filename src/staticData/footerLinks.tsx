@@ -1,7 +1,5 @@
-import { PrivacyPolicy } from "@/components/dataComponents/formal/privacyPolicy";
 import { SectionName } from "@/components/layout/header";
-import { Title } from "@mantine/core";
-import { modals } from "@mantine/modals";
+import { modals, openContextModal } from "@mantine/modals";
 
 export interface StrongFooterProps {
   links: { sectionName?: SectionName; label: string, onClick?: Function;}[];
@@ -21,12 +19,15 @@ export const footerLinks:{ sectionName?: SectionName; label: string; onClick?: F
     // },
     {
       label: "Privacy & Policy",
-      onClick: () => modals.open({
+      onClick: () => 
+      openContextModal({
+        modal: "privacyPolicy",
         title: "Privacy & Policy",
-        children: (<><PrivacyPolicy/></>),
+        innerProps: {},
         radius: "md",
         size: 800,
-        overlayProps:{opacity: 0.5, blur: 4}
+        overlayProps: { opacity: 0.5, blur: 4 },
       })
+     
     },
   ]

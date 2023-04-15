@@ -1,4 +1,4 @@
-import { SwitchesCardProps } from "@/components/dataComponents/formal/cookiesModal";
+import { SwitchesCardProps } from "@/components/dataComponents/modals/cookiesModal";
 
 export const cookieData: SwitchesCardProps = {
   data: [

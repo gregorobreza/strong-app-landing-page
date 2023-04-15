@@ -8,15 +8,14 @@ import {
   Collapse,
   createStyles,
   Group,
-  LoadingOverlay,
   Modal,
   SegmentedControl,
   Stack,
   Text,
-  TextInput,
+  TextInput
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { modals } from "@mantine/modals";
+import { modals, openContextModal } from "@mantine/modals";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -28,11 +27,9 @@ import {
   FormikHelpers,
   FormikProps,
 } from "formik";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { object, string } from "yup";
-import { TermsAndConditions } from "../dataComponents/formal/termsAndConditions";
-import { PrimaryButton } from "../styledComponents/buttons/mainButtons";
 import {
   SectionText,
   SectionTitle,
@@ -383,13 +380,10 @@ export function SignUpForm(): JSX.Element {
                       color="red.7"
                       component="button"
                       onClick={() =>
-                        modals.open({
+                        openContextModal({
+                          modal: "termsAndConditions",
                           title: "Terms & Conditions",
-                          children: (
-                            <>
-                              <TermsAndConditions />
-                            </>
-                          ),
+                          innerProps:{},
                           radius: "md",
                           size: 800,
                           overlayProps: { opacity: 0.5, blur: 4 },

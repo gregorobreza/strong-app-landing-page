@@ -1,8 +1,9 @@
 import { PrimaryButton } from "@/components/styledComponents/buttons/mainButtons";
-import { Title, Text, Stack } from "@mantine/core";
-import { modals } from "@mantine/modals";
+import { Stack, Text, Title } from "@mantine/core";
+import { ContextModalProps } from "@mantine/modals";
 
-export function TermsAndConditions(): JSX.Element {
+export const TermsAndConditionsModal = ({ context, id, innerProps }: ContextModalProps<{}>) =>{
+
   return (
     <Stack>
       <Text>
@@ -66,7 +67,7 @@ export function TermsAndConditions(): JSX.Element {
         button, you acknowledge that you have read and understood these terms
         and conditions and agree to be bound by them.
       </Text>
-      <PrimaryButton color="steelteal.6" size="md" onClick={() => modals.closeAll()}>
+      <PrimaryButton color="steelteal.6" size="md" onClick={() => context.closeModal(id)}>
         Close
       </PrimaryButton>
     </Stack>

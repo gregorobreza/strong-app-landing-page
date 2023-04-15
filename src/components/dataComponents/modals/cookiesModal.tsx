@@ -11,10 +11,9 @@ import {
   rem
 } from "@mantine/core";
 import { useSetState } from "@mantine/hooks";
-import { modals } from "@mantine/modals";
+import { ContextModalProps, modals, openContextModal } from "@mantine/modals";
 import { CookieValueTypes } from "cookies-next";
 import { useRouter } from "next/router";
-import { PrivacyPolicy } from "./privacyPolicy";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -63,8 +62,7 @@ export interface CookieType {
   social: CookieValueTypes;
   advertising: CookieValueTypes;
 }
-
-export function CookiesCard({ data }: SwitchesCardProps) {
+export const CookiesCardModal = ({ context, id, innerProps }: ContextModalProps<{ switches: SwitchesCardProps }>) =>{
   const { classes } = useStyles();
   const { currentCookies } = useSetConsentCookies();
   const router = useRouter();
@@ -72,7 +70,7 @@ export function CookiesCard({ data }: SwitchesCardProps) {
   const [state, setState] = useSetState<CookieType>(currentCookies());
 
   const { manageCookies } = useSetConsentCookies();
-
+  const data = innerProps.switches.data
   const items = data.map((item, index) => (
     <Group
       key={index}
@@ -116,13 +114,10 @@ export function CookiesCard({ data }: SwitchesCardProps) {
           component="button"
           color="steelteal.6"
           onClick={() =>
-            modals.open({
+            openContextModal({
+              modal: "privacyPolicy",
               title: "Privacy & Policy",
-              children: (
-                <>
-                  <PrivacyPolicy />
-                </>
-              ),
+              innerProps: {},
               radius: "md",
               size: 800,
               overlayProps: { opacity: 0.5, blur: 4 },
@@ -144,13 +139,10 @@ export function CookiesCard({ data }: SwitchesCardProps) {
           component="button"
           color="steelteal.6"
           onClick={() =>
-            modals.open({
+            openContextModal({
+              modal: "privacyPolicy",
               title: "Privacy & Policy",
-              children: (
-                <>
-                  <PrivacyPolicy />
-                </>
-              ),
+              innerProps: {},
               radius: "md",
               size: 800,
               overlayProps: { opacity: 0.5, blur: 4 },

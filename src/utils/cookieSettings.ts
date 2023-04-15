@@ -1,4 +1,4 @@
-import { CookieType } from "@/components/dataComponents/formal/cookiesModal";
+import { CookieType } from "@/components/dataComponents/modals/cookiesModal";
 import { getCookie, setCookie } from "cookies-next";
 
 type possibleCookies =
