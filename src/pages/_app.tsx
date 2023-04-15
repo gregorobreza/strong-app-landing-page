@@ -19,9 +19,35 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
+        <meta property="og:site_name" content="Barbell Logbook" />
         <title>
           Barbell Logbook | Revolutionize managing strength training
         </title>
+        <meta
+          name="og:title"
+          content="Barbell Logbook | Revolutionize managing strength training"
+        />
+        <meta
+          name="title"
+          content="Barbell Logbook | Revolutionize managing strength training"
+        />
+        <meta property="og:url" content="https://barbelllogbook.com/" />
+        <meta
+          name="og:description"
+          content="The Barbell Logbook is the ultimate strength platform for strength athletes and strength coaches."
+        />
+        <meta
+          name="description"
+          content="The Barbell Logbook is the ultimate strength platform for strength athletes and strength coaches."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        <meta
+          property="og:image"
+          content="https://barbelllogbook.com/barbell_logbook_logo_canvas.png"
+        />
+        <meta name="og:image:alt" content="Barbell Logbook logo" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
