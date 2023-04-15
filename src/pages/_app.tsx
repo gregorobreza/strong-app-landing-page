@@ -34,11 +34,11 @@ export default function App(props: AppProps) {
         <meta property="og:url" content="https://barbelllogbook.com/" />
         <meta
           name="og:description"
-          content="The Barbell Logbook is the ultimate strength platform for strength athletes and strength coaches."
+          content="The Barbell Logbook is the ultimate strength platform for strength athletes and strength coaches. Track custom workout plans, records exercises, and shows progress analytics."
         />
         <meta
           name="description"
-          content="The Barbell Logbook is the ultimate strength platform for strength athletes and strength coaches."
+          content="The Barbell Logbook is the ultimate strength platform for strength athletes and strength coaches. Track custom workout plans, records exercises, and shows progress analytics."
         />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_US" />
