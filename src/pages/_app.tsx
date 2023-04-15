@@ -24,20 +24,20 @@ export default function App(props: AppProps) {
           Barbell Logbook | Revolutionize managing strength training
         </title>
         <meta
-          name="og:title"
+          name="title"
           content="Barbell Logbook | Revolutionize managing strength training"
         />
         <meta
-          name="title"
+          name="description"
+          content="The Barbell Logbook is the ultimate strength platform for strength athletes and strength coaches. Track custom workout plans, records exercises, and shows progress analytics."
+        />
+        <meta
+          name="og:title"
           content="Barbell Logbook | Revolutionize managing strength training"
         />
         <meta property="og:url" content="https://barbelllogbook.com/" />
         <meta
           name="og:description"
-          content="The Barbell Logbook is the ultimate strength platform for strength athletes and strength coaches. Track custom workout plans, records exercises, and shows progress analytics."
-        />
-        <meta
-          name="description"
           content="The Barbell Logbook is the ultimate strength platform for strength athletes and strength coaches. Track custom workout plans, records exercises, and shows progress analytics."
         />
         <meta property="og:type" content="website" />
@@ -48,6 +48,19 @@ export default function App(props: AppProps) {
         />
         <meta name="og:image:alt" content="Barbell Logbook logo" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://barbelllogbook.com/" />
+        <meta
+          property="twitter:title"
+          content="Barbell Logbook | Revolutionize managing strength training"
+        />
+        <meta
+          property="twitter:description"
+          content="The Barbell Logbook is the ultimate strength platform for strength athletes and strength coaches."
+        />
+        <meta
+          property="twitter:image"
+          content="https://barbelllogbook.com/barbell_logbook_logo_canvas.png"
+        />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
