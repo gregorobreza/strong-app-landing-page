@@ -23,18 +23,18 @@ export default function SignUpEmail({
   return (
     <Html>
       <Head />
-      <Preview>Wellcome warrior!</Preview>
+      <Preview>Track your strength training progress like never before with Barbell Logbook. As an Early Bird member, get exclusive sneak peeks of our new app designed for athletes and coaches.</Preview>
       <Section style={main}>
         <Container style={container}>
           <Img
             src={imageUrl}
-            width="140"
-            height="140"
+            width="160"
+            height="160"
             alt="BarbellLogbook"
             style={logo}
           />
           <Text style={paragraph}>Hi {email},</Text>
-          <Text style={paragraph}>You succesfully submited form</Text>
+          <Text style={paragraph}>You succesfully submited form for early bird signup.</Text>
 
           <Section style={btnContainer}>
             <Button pX={12} pY={12} style={button} href={linkUrl}>
@@ -53,6 +53,21 @@ export default function SignUpEmail({
     </Html>
   );
 }
+// Dear [User],
+
+// Thank you for signing up for Barbell Logbook's Early Bird program! Whether you're a strength athlete or coach, we're excited to have you on board and can't wait to share our latest product with you.
+
+// Barbell Logbook is designed for anyone who wants to track their strength training progress and achieve their goals. With features that make tracking your workouts and analyzing your performance easier than ever, Barbell Logbook is the ultimate tool for strength athletes and coaches alike.
+
+// As an Early Bird member, you'll have exclusive access to updates and sneak peeks of our new app. We're committed to creating an app that meets the unique needs of strength athletes and coaches, and your feedback will be an essential part of that process.
+
+// We'll be sending you regular updates as we make progress, so you'll always be in the know. And as a special thank you for being part of our Early Bird program, we'll be offering you a discount on the final app when it's released.
+
+// Thank you for your support and for being part of our community of strong athletes and coaches. We're excited to have you on board and can't wait to show you what Barbell Logbook can do for you.
+
+// Best regards,
+
+// [Your Name]
 
 const fontFamily =
   '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif';
@@ -65,7 +80,7 @@ const container = {
   margin: "0 auto",
   //   padding: "20px 0 48px",
   padding: "45px",
-  backgroundColor: "#141517",
+  backgroundColor: "#1E2526",
 };
 
 
