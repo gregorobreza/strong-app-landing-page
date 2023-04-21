@@ -15,15 +15,15 @@ export interface SignUpProps {
   imageUrl: string;
 }
 
-export default function SignUpEmail({
-  email,
-  linkUrl,
-  imageUrl,
-}: SignUpProps) {
+export default function SignUpEmail({ email, linkUrl, imageUrl }: SignUpProps) {
   return (
     <Html>
       <Head />
-      <Preview>Track your strength training progress like never before with Barbell Logbook. As an Early Bird member, get exclusive sneak peeks of our new app designed for athletes and coaches.</Preview>
+      <Preview>
+        Track your strength training progress like never before with Barbell
+        Logbook. As an Early Bird member, get exclusive sneak peeks of our new
+        app designed for athletes and coaches.
+      </Preview>
       <Section style={main}>
         <Container style={container}>
           <Img
@@ -33,18 +33,47 @@ export default function SignUpEmail({
             alt="BarbellLogbook"
             style={logo}
           />
-          <Text style={paragraph}>Hi {email},</Text>
-          <Text style={paragraph}>You succesfully submited form for early bird signup.</Text>
+          <Text style={paragraph}>Dear {email},</Text>
+          <Text style={paragraph}>
+            Thank you for signing up for Barbell Logbook&apos;s Early Bird
+            program! Whether you&apos;re a strength athlete or coach, we&apos;re
+            excited to have you on board and can&apos;t wait to share our latest
+            product with you.
+          </Text>
+          <Text style={paragraph}>
+            Barbell Logbook is designed for anyone who wants to track their
+            strength training progress and achieve their goals. With features
+            that make tracking your workouts and analyzing your performance
+            easier than ever, Barbell Logbook is the ultimate tool for strength
+            athletes and coaches alike.
+          </Text>
+          <Text style={paragraph}>
+            As an Early Bird member, you&apos;ll have exclusive access to updates and
+            sneak peeks of our new app. We&apos;re committed to creating an app that
+            meets the unique needs of strength athletes and coaches, and your
+            feedback will be an essential part of that process.
+          </Text>
+          <Text style={paragraph}>
+            We&apos;ll be sending you regular updates as we make progress, so you&apos;ll
+            always be in the know. And as a special thank you for being part of
+            our Early Bird program, we&apos;ll be offering you a discount on the
+            final app when it&apos;s released.
+          </Text>
+          <Text style={paragraph}>
+            Thank you for your support and for being part of our community of
+            strong athletes and coaches. We&apos;re excited to have you on board and
+            can&apos;t wait to show you what Barbell Logbook can do for you.
+          </Text>
 
-          <Section style={btnContainer}>
+          {/* <Section style={btnContainer}>
             <Button pX={12} pY={12} style={button} href={linkUrl}>
               Check when we will?
             </Button>
-          </Section>
+          </Section> */}
           <Text style={paragraph}>
-            Best,
+            Best regards,
             <br />
-            get stronger
+            Barbell Logbook Team
           </Text>
           <Hr style={hr} />
           <Text style={footer}>Barbell Logbook</Text>
@@ -83,7 +112,6 @@ const container = {
   backgroundColor: "#1E2526",
 };
 
-
 const logo = {
   margin: "0 auto",
 };
@@ -93,7 +121,7 @@ const paragraph = {
   fontSize: "16px",
   lineHeight: "26px",
   color: "#ffffff",
-  textAlign: "center" as const,
+  textAlign: "left" as const,
 };
 
 const btnContainer = {
@@ -122,5 +150,3 @@ const footer = {
   color: "#ffffff",
   fontSize: "12px",
 };
-
-
