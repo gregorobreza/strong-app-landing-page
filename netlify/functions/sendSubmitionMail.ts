@@ -16,7 +16,7 @@ const handler: Handler = async (
     const costumer = await mailTransporter.sendMail({
       from: `Barbell Logbook <${process.env.SMTP_SERVER_EMAIL_ADDRESS}>`,
       to: data.formValues.email,
-      subject: `Welcome to Barbell Logbook's Early Bird Program, Strong Athlete or Coach!`,
+      subject: `Succesfully signed up!`,
       html: data.html,
     });
   } catch (error) {
