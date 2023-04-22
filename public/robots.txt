@@ -1,6 +1,7 @@
 # Block all crawlers for /api/
 User-agent: *
-Disallow: /api
+Disallow: /api/
+Disallow: /newsletters/
 
 User-agent: *
 Allow: /

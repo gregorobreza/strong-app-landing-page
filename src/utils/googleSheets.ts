@@ -1,7 +1,7 @@
 import { ISignUpForm } from "@/components/forms/signUpForm";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
-export async function addSignUpToSpreadSheets(formValues: ISignUpForm) {
+export async function addSignUpToSpreadSheets(formValues: ISignUpForm, emailUuid:string) {
   // Initialize the sheet - doc ID is the long id in the sheets URL
   const doc = new GoogleSpreadsheet(
     process.env.GOOGLE_SPREADSHEET_ID
@@ -21,14 +21,15 @@ export async function addSignUpToSpreadSheets(formValues: ISignUpForm) {
   const sheet = doc.sheetsByTitle[process.env.GOOGLE_SIGNUP_SHEET_TITLE ||""];
   // append row
   const larryRow = await sheet.addRow({
+    uuid4: emailUuid,
     email: formValues.email,
     interestedAsAthlete: formValues.interestedAs.includes("athlete"),
     interestedAsCoach: formValues.interestedAs.includes("coach"),
     athleteLevel: formValues.athleteLevel,
     coachLevel: formValues.coachLevel,
     surveys: formValues.surveys,
+    newsletters: true
   });
 
-  // read rows
-  const rows = await sheet.getRows(); // can pass in { limit, offset }
+  return "OK"
 }

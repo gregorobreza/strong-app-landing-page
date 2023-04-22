@@ -8,9 +8,8 @@ const handler: Handler = async (
   event: HandlerEvent,
   context: HandlerContext
 ) => {
-  let data: { formValues: ISignUpForm; html: string } = JSON.parse(
-    event.body || ""
-  );
+  let data: { formValues: ISignUpForm; emailUuid: string; html: string } =
+    JSON.parse(event.body || "");
 
   try {
     const costumer = await mailTransporter.sendMail({
@@ -23,12 +22,15 @@ const handler: Handler = async (
     console.error(error);
     return {
       statusCode: 503,
-      body: JSON.stringify({ message: "Uh-oh, looks like a technical glitch. Please try again later." }),
+      body: JSON.stringify({
+        message:
+          "Uh-oh, looks like a technical glitch. Please try again later.",
+      }),
     };
   }
 
   try {
-    await addSignUpToSpreadSheets(data.formValues);
+    await addSignUpToSpreadSheets(data.formValues, data.emailUuid);
   } catch (error) {
     console.error(error);
   }
@@ -38,13 +40,16 @@ const handler: Handler = async (
       from: process.env.SMTP_SERVER_EMAIL_ADDRESS,
       to: "signups@barbelllogbook.com",
       subject: `Another sign up!`,
-      html: `<div>${data.formValues.email} just signed up!</div>`,
+      html: `<div>${data.formValues.email} just signed up! with uuid ${data.emailUuid}</div>`,
     });
   } catch (error) {
     console.error(error);
     return {
       statusCode: 503,
-      body: JSON.stringify({ message: "Uh-oh, looks like a technical glitch. Please try again later." }),
+      body: JSON.stringify({
+        message:
+          "Uh-oh, looks like a technical glitch. Please try again later.",
+      }),
     };
   }
 

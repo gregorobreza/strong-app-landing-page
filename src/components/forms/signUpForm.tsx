@@ -12,7 +12,7 @@ import {
   SegmentedControl,
   Stack,
   Text,
-  TextInput
+  TextInput,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { modals, openContextModal } from "@mantine/modals";
@@ -34,6 +34,7 @@ import {
   SectionText,
   SectionTitle,
 } from "../styledComponents/typography/sectionTypography";
+import { v4 as uuidv4 } from "uuid";
 
 export interface ISignUpForm {
   email: string;
@@ -94,12 +95,15 @@ export function SignUpForm(): JSX.Element {
     mutationFn: async ({
       formValues,
       html,
+      emailUuid,
     }: {
       formValues: ISignUpForm;
       html: string;
+      emailUuid: string;
     }) => {
       return axios.post("/api/0/sendSubmitionMail", {
         formValues: formValues,
+        emailUuid: emailUuid,
         html: html,
       });
     },
@@ -177,6 +181,7 @@ export function SignUpForm(): JSX.Element {
             formikHelpers: FormikHelpers<ISignUpForm>
           ) => {
             // console.log(values);
+            const emailUuid = uuidv4();
             const token = await handleReCaptchaVerify();
             const checkValidity = await reCaptcha({ token: token || "" });
             console.log("check validity", checkValidity.data.redata);
@@ -186,7 +191,8 @@ export function SignUpForm(): JSX.Element {
             ) {
               formSubmit({
                 formValues: values,
-                html: signUpHtml(values.email),
+                emailUuid: emailUuid,
+                html: signUpHtml(values.email, emailUuid),
               });
             } else {
               setError(true);
@@ -383,7 +389,7 @@ export function SignUpForm(): JSX.Element {
                         openContextModal({
                           modal: "termsAndConditions",
                           title: "Terms & Conditions",
-                          innerProps:{},
+                          innerProps: {},
                           radius: "md",
                           size: 800,
                           overlayProps: { opacity: 0.5, blur: 4 },
@@ -421,7 +427,12 @@ export function SignUpForm(): JSX.Element {
                   >
                     Submit
                   </PrimaryButton> */}
-                  <Button radius="xl" size="md" loading={isLoading || reIsLoading} type="submit">
+                  <Button
+                    radius="xl"
+                    size="md"
+                    loading={isLoading || reIsLoading}
+                    type="submit"
+                  >
                     Submit
                   </Button>
                 </Stack>
