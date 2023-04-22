@@ -34,7 +34,16 @@ export default function SignUpEmail({
             alt="BarbellLogbook"
             style={logo}
           />
-          <Text style={paragraph}>Dear {email},</Text>
+          <Text style={paragraph}>
+            Dear{" "}
+            <Link
+              style={{ color: "#E03131", textDecoration: "underline" }}
+              href={`mailto:${email}`}
+            >
+              {email}
+            </Link>
+            ,
+          </Text>
           <Text style={paragraph}>
             Thank you for signing up for Barbell Logbook's Early Bird program!
             Whether you're a strength athlete or coach, we're excited to have

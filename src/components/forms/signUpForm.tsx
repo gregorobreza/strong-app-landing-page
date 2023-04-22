@@ -184,7 +184,7 @@ export function SignUpForm(): JSX.Element {
             const emailUuid = uuidv4();
             const token = await handleReCaptchaVerify();
             const checkValidity = await reCaptcha({ token: token || "" });
-            console.log("check validity", checkValidity.data.redata);
+            // console.log("check validity", checkValidity.data.redata);
             if (
               checkValidity.data.redata.success &&
               checkValidity.data.redata.score > 0.4
