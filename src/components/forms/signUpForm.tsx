@@ -419,14 +419,6 @@ export function SignUpForm(): JSX.Element {
                     </Anchor>{" "}
                     apply.
                   </Text>
-                  {/* <PrimaryButton
-                    // onClick={() => formikProps.submitForm()}
-                    size="md"
-                    isLoading={isLoading || reIsLoading}
-                    type="submit"
-                  >
-                    Submit
-                  </PrimaryButton> */}
                   <Button
                     radius="xl"
                     size="md"

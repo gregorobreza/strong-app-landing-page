@@ -24,7 +24,10 @@ export default function SignUpEmail({
   return (
     <Html>
       <Head />
-      <Preview>Wellcome warrior!</Preview>
+      <Preview>
+        Get exclusive sneak peeks of our new app designed for strength athletes
+        and coaches.
+      </Preview>
       <Section style={main}>
         <Container style={container}>
           <Img
@@ -114,6 +117,7 @@ const container = {
   // padding: "45px",
   backgroundColor: "#141517",
   maxWidth: "50em",
+  borderRadius: "25px",
 };
 
 const logo = {
